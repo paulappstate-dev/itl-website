@@ -1,0 +1,638 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>MTL-2010 — Weekly Video Slide Template (Direction A · Editorial split)</title>
+<style>
+  :root {
+    --black: #1a1a1a;
+    --white: #ffffff;
+    --paper: #f4f3ee;
+    --paper-cool: #eef0f3;
+    --rule: #dcd9d0;
+    --rule-strong: #1a1a1a;
+    --gray: #7b7770;
+    --gray-d: #4c4847;
+    --gold: #FFCC00;
+    --blue: #03659c;
+    --brick: #a8513a;
+
+    --pad-x: 96px;
+    --pad-top: 64px;
+    --pad-bot: 72px;
+
+    --font: Helvetica, "Helvetica Neue", Arial, sans-serif;
+    --mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  }
+
+  html, body { margin: 0; padding: 0; background: #0a0a0a; }
+  * { box-sizing: border-box; }
+
+  /* Slide skeleton */
+  .slide {
+    width: 1920px;
+    height: 1080px;
+    background: var(--paper);
+    color: var(--black);
+    font-family: var(--font);
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Top bar (consistent across all slides) */
+  .topbar {
+    position: absolute;
+    top: var(--pad-top);
+    left: var(--pad-x);
+    right: var(--pad-x);
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+  .kicker {
+    font-size: 20px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    font-weight: 700;
+    line-height: 1;
+  }
+  .kicker.sm { font-size: 16px; letter-spacing: 3px; }
+  .kicker.xs { font-size: 14px; letter-spacing: 2.5px; }
+  .kicker.blue { color: var(--blue); }
+  .kicker.gray { color: var(--gray-d); }
+
+  /* Editorial gold rule — the spine of the system */
+  .gold-rule {
+    position: absolute;
+    left: var(--pad-x);
+    right: var(--pad-x);
+    height: 8px;
+    background: var(--gold);
+  }
+
+  /* Course meta row, sits below gold rule */
+  .meta-row {
+    position: absolute;
+    left: var(--pad-x);
+    right: var(--pad-x);
+    display: flex;
+    justify-content: space-between;
+    font-size: 22px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: var(--gray-d);
+  }
+
+  /* Display headline */
+  .display {
+    font-weight: 800;
+    color: var(--black);
+    line-height: 0.9;
+    letter-spacing: -7px;
+  }
+  .display.xl { font-size: 130px; letter-spacing: -5px; }
+  .display.lg { font-size: 170px; letter-spacing: -7px; }
+  .display.md { font-size: 120px; letter-spacing: -4.5px; line-height: 0.95; }
+  .display .accent { color: var(--blue); }
+
+  /* Lead paragraph */
+  .lead {
+    font-size: 28px;
+    line-height: 1.5;
+    color: var(--gray-d);
+    max-width: 1200px;
+    margin-top: 40px;
+  }
+
+  /* Footer with dev marker */
+  .footer {
+    position: absolute;
+    bottom: var(--pad-bot);
+    left: var(--pad-x);
+    right: var(--pad-x);
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    border-top: 2px solid var(--black);
+    padding-top: 24px;
+  }
+  .footer .meta-block { font-size: 18px; line-height: 1.5; color: var(--gray-d); }
+  .footer .meta-block strong { color: var(--black); font-weight: 700; }
+
+  /* Slide-of-six dev marker */
+  .dev-marker {
+    font-family: var(--mono);
+    font-size: 14px;
+    letter-spacing: 1.5px;
+    color: var(--gray);
+    background: rgba(26,26,26,0.06);
+    padding: 6px 12px;
+    border: 1px solid var(--rule);
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+
+  /* Logo (title only) */
+  .logo { height: 130px; width: auto; display: block; }
+
+  /* Instructor card (title only) */
+  .instructor-card { font-size: 19px; line-height: 1.55; color: var(--gray-d); }
+  .instructor-card .name { color: var(--black); font-weight: 700; font-size: 24px; letter-spacing: -0.2px; margin-bottom: 6px; }
+
+  /* Section marker (used on interior slides instead of meta-row) */
+  .section-marker {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    font-size: 22px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: var(--blue);
+  }
+  .section-marker .bar { width: 56px; height: 4px; background: var(--gold); display: inline-block; }
+
+  /* Numbered list (Focus slide) */
+  .num-list { display: flex; flex-direction: column; margin-top: 36px; max-width: 1500px; }
+  .num-list .item {
+    display: grid;
+    grid-template-columns: 100px 1fr;
+    gap: 32px;
+    padding: 22px 0;
+    border-top: 1px solid var(--rule);
+  }
+  .num-list .item:first-child { border-top: 2px solid var(--black); }
+  .num-list .num {
+    font-family: var(--mono);
+    font-size: 30px;
+    font-weight: 700;
+    color: var(--blue);
+    letter-spacing: 1px;
+    line-height: 1;
+  }
+  .num-list .title-l { font-size: 34px; font-weight: 700; letter-spacing: -0.6px; line-height: 1.15; color: var(--black); }
+  .num-list .desc-l { font-size: 20px; margin-top: 8px; color: var(--gray-d); line-height: 1.45; max-width: 1100px; }
+
+  /* Pull-quote callout */
+  .callout {
+    margin-top: 56px;
+    background: var(--white);
+    border-left: 6px solid var(--gold);
+    padding: 28px 32px;
+    max-width: 760px;
+  }
+  .callout .q { font-size: 24px; line-height: 1.45; color: var(--black); font-weight: 500; font-style: italic; }
+
+  /* Due cards */
+  .due-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 56px; max-width: 1700px; }
+  .due-card {
+    background: var(--white);
+    border: 1px solid var(--rule);
+    border-top: 6px solid var(--gold);
+    padding: 32px 32px;
+    min-height: 310px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .due-card .label { font-size: 15px; letter-spacing: 3px; text-transform: uppercase; font-weight: 700; color: var(--blue); }
+  .due-card .title-d { font-size: 36px; font-weight: 700; letter-spacing: -0.6px; line-height: 1.1; color: var(--black); margin-top: 12px; }
+  .due-card .when { margin-top: 24px; font-size: 18px; color: var(--gray-d); padding-top: 16px; border-top: 1px solid var(--rule); }
+  .due-card .when strong { color: var(--black); font-weight: 700; }
+
+  /* Two-column body for Ahead slide */
+  .body-2col {
+    position: absolute;
+    top: 360px;
+    left: var(--pad-x);
+    right: var(--pad-x);
+    bottom: 200px;
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 96px;
+  }
+
+  /* Body block (interior slide content area) */
+  .body-block {
+    position: absolute;
+    left: var(--pad-x);
+    right: var(--pad-x);
+    top: 360px;
+    bottom: 180px;
+  }
+
+  /* Mono token for {{placeholders}} */
+  .tok {
+    font-family: var(--mono);
+    font-weight: 600;
+    color: var(--blue);
+    background: rgba(3,101,156,0.08);
+    padding: 4px 10px;
+    border-radius: 3px;
+    letter-spacing: 0;
+    font-size: 0.85em;
+    text-transform: none;
+    display: inline-block;
+    line-height: 1.2;
+  }
+  .tok.dark { color: var(--black); background: rgba(26,26,26,0.06); }
+  .tok.blue-fill { color: var(--white); background: var(--blue); }
+
+  /* Placeholder text styling */
+  .placeholder {
+    font-size: 56px;
+    font-weight: 700;
+    letter-spacing: -1.5px;
+    line-height: 1.1;
+    color: var(--black);
+  }
+  .placeholder.lg { font-size: 80px; letter-spacing: -2.5px; }
+  .placeholder-note {
+    margin-top: 24px;
+    font-size: 22px;
+    color: var(--gray-d);
+    line-height: 1.5;
+    max-width: 1300px;
+  }
+</style>
+
+<script type="application/json" id="speaker-notes">
+[
+  "Slide 1 — Title. Set the week and topic. Replace COURSE_CODE / WEEK_NUMBER / WEEK_TOPIC_LEAD / WEEK_TOPIC_ACCENT / RELEASE_DATE. The accent word is rendered in App State blue.",
+  "Slide 2 — Recap. One or two beats from last week. Replace LAST_WEEK_RECAP.",
+  "Slide 3 — Focus. The core of this week's video. Replace FOCUS_CONTENT.",
+  "Slide 4 — Due. Concrete deliverables and dates. Replace DUE_ITEMS.",
+  "Slide 5 — Ahead. Tee up next week. Replace NEXT_WEEK_PREVIEW.",
+  "Slide 6 — Sign-off. Replace SIGNOFF_LINE."
+]
+</script>
+</head>
+<body>
+
+<deck-stage>
+
+  <!-- =========================================================
+       SLIDE 1 — TITLE · Direction A · Editorial split
+       Paper background, gold rule, oversize headline.
+       Headline supports one accent word in App State blue:
+         {{WEEK_TOPIC_LEAD}} carries normal weight in black,
+         {{WEEK_TOPIC_ACCENT}} is the word rendered in blue.
+       ========================================================= -->
+  <section data-screen-label="01 Title">
+    <div class="slide">
+      <!-- Top bar with logo -->
+      <div class="topbar">
+        <div>
+          <div class="kicker blue">Appalachian State · Reich College of Education</div>
+          <div class="kicker sm gray" style="margin-top: 8px; font-weight: 500;">
+            Media, Career Studies &amp; Leadership Development
+          </div>
+        </div>
+        <img class="logo" src="block-a.png" alt="Appalachian State Mountaineers" />
+      </div>
+
+      <!-- Gold rule -->
+      <div class="gold-rule" style="top: 232px;"></div>
+
+      <!-- Course meta row -->
+      <div class="meta-row" style="top: 268px;">
+        <span><span class="tok dark">{{COURSE_CODE}}</span> &nbsp;·&nbsp; Week <span class="tok dark">{{WEEK_NUMBER}}</span></span>
+        <span>Released &nbsp;<span class="tok">{{RELEASE_DATE}}</span></span>
+      </div>
+
+      <!-- Big title with blue accent word.
+           Token names use short identifiers ({{TOPIC}} / {{ACCENT}}) so the
+           placeholder fits the headline; tokens also break on overflow as
+           a safety net for long replacement strings. -->
+      <div style="position: absolute; left: var(--pad-x); right: var(--pad-x); top: 380px; max-width: 1500px;">
+        <div class="display xl" style="display: flex; flex-direction: column; gap: 14px; align-items: flex-start;">
+          <span class="tok dark" style="font-size: 0.95em; padding: 6px 18px; max-width: 100%; word-break: break-word; overflow-wrap: anywhere;">{{TOPIC}}</span>
+          <span class="tok blue-fill" style="font-size: 0.95em; padding: 6px 18px; max-width: 100%; word-break: break-word; overflow-wrap: anywhere;">{{ACCENT}}</span>
+        </div>
+        <div style="margin-top: 36px; font-size: 24px; line-height: 1.5; color: var(--gray-d); max-width: 1100px;">
+          <span class="tok">{{TITLE_LEAD}}</span>
+        </div>
+      </div>
+
+      <!-- Footer: instructor only on title -->
+      <div class="footer">
+        <div class="instructor-card">
+          <div class="name">Dr. Paul Wallace</div>
+          Professor of Media, Technology &amp; Learning Design
+        </div>
+        <div class="dev-marker">[ Slide 1 of 6 — Title ]</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       SLIDE 2 — RECAP · Where We Are
+       ========================================================= -->
+  <section data-screen-label="02 Recap">
+    <div class="slide">
+      <!-- Top bar -->
+      <div class="topbar">
+        <div>
+          <div class="kicker blue">Appalachian State · Reich College of Education</div>
+          <div class="kicker sm gray" style="margin-top: 8px; font-weight: 500;">
+            Media, Career Studies &amp; Leadership Development
+          </div>
+        </div>
+        <div class="kicker sm gray" style="font-family: var(--mono); letter-spacing: 1px;">02 / 06</div>
+      </div>
+
+      <!-- Gold rule -->
+      <div class="gold-rule" style="top: 232px;"></div>
+
+      <!-- Meta row -->
+      <div class="meta-row" style="top: 268px;">
+        <span><span class="tok dark">{{COURSE_CODE}}</span> &nbsp;·&nbsp; Week <span class="tok dark">{{WEEK_NUMBER}}</span></span>
+        <span class="section-marker"><span class="bar"></span><span>Recap</span></span>
+      </div>
+
+      <!-- Body: two-column so LAST_WEEK_RECAP gets half the slide -->
+      <div class="body-block" style="display: grid; grid-template-columns: 1fr 1fr; gap: 96px;">
+        <div>
+          <div style="font-size: 88px; font-weight: 800; color: var(--black); line-height: 0.9; letter-spacing: -3px;">
+            Where we<br /><span style="color: var(--blue);">are</span>.
+          </div>
+          <div class="lead" style="margin-top: 32px; max-width: 720px;">
+            <span class="tok">{{RECAP_LEAD}}</span>
+          </div>
+        </div>
+
+        <div style="padding-top: 18px; border-top: 2px solid var(--black);">
+          <div class="kicker sm blue">Last week, we covered</div>
+          <div class="placeholder lg" style="margin-top: 24px;">
+            <span class="tok">{{LAST_WEEK_RECAP}}</span>
+          </div>
+          <div class="placeholder-note" style="max-width: 100%;">
+            <span class="tok">{{RECAP_DETAIL}}</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Footer -->
+      <div class="footer">
+        <div class="meta-block">
+          <span class="tok dark">{{COURSE_CODE}}</span> &nbsp;·&nbsp; Week <span class="tok dark">{{WEEK_NUMBER}}</span> &nbsp;·&nbsp; Reich College of Education
+        </div>
+        <div class="dev-marker">[ Slide 2 of 6 — Recap ]</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       SLIDE 3 — FOCUS · This Week's Focus
+       ========================================================= -->
+  <section data-screen-label="03 Focus">
+    <div class="slide">
+      <!-- Top bar -->
+      <div class="topbar">
+        <div>
+          <div class="kicker blue">Appalachian State · Reich College of Education</div>
+          <div class="kicker sm gray" style="margin-top: 8px; font-weight: 500;">
+            Media, Career Studies &amp; Leadership Development
+          </div>
+        </div>
+        <div class="kicker sm gray" style="font-family: var(--mono); letter-spacing: 1px;">03 / 06</div>
+      </div>
+
+      <!-- Gold rule -->
+      <div class="gold-rule" style="top: 232px;"></div>
+
+      <!-- Meta row -->
+      <div class="meta-row" style="top: 268px;">
+        <span><span class="tok dark">{{COURSE_CODE}}</span> &nbsp;·&nbsp; Week <span class="tok dark">{{WEEK_NUMBER}}</span></span>
+        <span class="section-marker"><span class="bar"></span><span>This Week&rsquo;s Focus</span></span>
+      </div>
+
+      <!-- Body -->
+      <div class="body-block">
+        <div style="font-size: 88px; font-weight: 800; color: var(--black); line-height: 0.9; letter-spacing: -3px;">
+          The core of<br />this <span style="color: var(--blue);">week</span>.
+        </div>
+
+        <div class="num-list" style="margin-top: 28px;">
+          <div class="item" style="padding: 18px 0;">
+            <div class="num">01</div>
+            <div>
+              <div class="title-l"><span class="tok">{{FOCUS_1_TITLE}}</span></div>
+              <div class="desc-l"><span class="tok">{{FOCUS_1_DETAIL}}</span></div>
+            </div>
+          </div>
+          <div class="item" style="padding: 18px 0;">
+            <div class="num">02</div>
+            <div>
+              <div class="title-l"><span class="tok">{{FOCUS_2_TITLE}}</span></div>
+              <div class="desc-l"><span class="tok">{{FOCUS_2_DETAIL}}</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Footer -->
+      <div class="footer">
+        <div class="meta-block">
+          <span class="tok dark">{{COURSE_CODE}}</span> &nbsp;·&nbsp; Week <span class="tok dark">{{WEEK_NUMBER}}</span> &nbsp;·&nbsp; Reich College of Education
+        </div>
+        <div class="dev-marker">[ Slide 3 of 6 — Focus ]</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       SLIDE 4 — DUE · What's Due
+       ========================================================= -->
+  <section data-screen-label="04 Due">
+    <div class="slide">
+      <!-- Top bar -->
+      <div class="topbar">
+        <div>
+          <div class="kicker blue">Appalachian State · Reich College of Education</div>
+          <div class="kicker sm gray" style="margin-top: 8px; font-weight: 500;">
+            Media, Career Studies &amp; Leadership Development
+          </div>
+        </div>
+        <div class="kicker sm gray" style="font-family: var(--mono); letter-spacing: 1px;">04 / 06</div>
+      </div>
+
+      <!-- Gold rule -->
+      <div class="gold-rule" style="top: 232px;"></div>
+
+      <!-- Meta row -->
+      <div class="meta-row" style="top: 268px;">
+        <span><span class="tok dark">{{COURSE_CODE}}</span> &nbsp;·&nbsp; Week <span class="tok dark">{{WEEK_NUMBER}}</span></span>
+        <span class="section-marker"><span class="bar"></span><span>What&rsquo;s Due</span></span>
+      </div>
+
+      <!-- Body -->
+      <div class="body-block">
+        <div class="display md">
+          What&rsquo;s due<br />this <span class="accent">week</span>.
+        </div>
+
+        <div class="due-grid">
+          <div class="due-card">
+            <div>
+              <div class="label">Deliverable 01</div>
+              <div class="title-d"><span class="tok">{{DELIV_1_TITLE}}</span></div>
+            </div>
+            <div class="when">
+              <span class="tok">{{DELIV_1_DETAIL}}</span>
+            </div>
+          </div>
+          <div class="due-card">
+            <div>
+              <div class="label">Deliverable 02</div>
+              <div class="title-d"><span class="tok">{{DELIV_2_TITLE}}</span></div>
+            </div>
+            <div class="when">
+              <span class="tok">{{DELIV_2_DETAIL}}</span>
+            </div>
+          </div>
+          <div class="due-card">
+            <div>
+              <div class="label">Deliverable 03</div>
+              <div class="title-d"><span class="tok">{{DELIV_3_TITLE}}</span></div>
+            </div>
+            <div class="when">
+              <span class="tok">{{DELIV_3_DETAIL}}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Footer -->
+      <div class="footer">
+        <div class="meta-block">
+          <span class="tok dark">{{COURSE_CODE}}</span> &nbsp;·&nbsp; Week <span class="tok dark">{{WEEK_NUMBER}}</span> &nbsp;·&nbsp; Reich College of Education
+        </div>
+        <div class="dev-marker">[ Slide 4 of 6 — Due ]</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       SLIDE 5 — AHEAD · Looking Ahead
+       ========================================================= -->
+  <section data-screen-label="05 Ahead">
+    <div class="slide">
+      <!-- Top bar -->
+      <div class="topbar">
+        <div>
+          <div class="kicker blue">Appalachian State · Reich College of Education</div>
+          <div class="kicker sm gray" style="margin-top: 8px; font-weight: 500;">
+            Media, Career Studies &amp; Leadership Development
+          </div>
+        </div>
+        <div class="kicker sm gray" style="font-family: var(--mono); letter-spacing: 1px;">05 / 06</div>
+      </div>
+
+      <!-- Gold rule -->
+      <div class="gold-rule" style="top: 232px;"></div>
+
+      <!-- Meta row -->
+      <div class="meta-row" style="top: 268px;">
+        <span><span class="tok dark">{{COURSE_CODE}}</span> &nbsp;·&nbsp; Week <span class="tok dark">{{WEEK_NUMBER}}</span></span>
+        <span class="section-marker"><span class="bar"></span><span>Looking Ahead</span></span>
+      </div>
+
+      <!-- Body, two-column -->
+      <div class="body-2col">
+        <div>
+          <div class="display md">
+            Next<br /><span class="accent">week</span>.
+          </div>
+          <div class="lead" style="margin-top: 32px;">
+            <span class="tok">{{AHEAD_LEAD}}</span>
+          </div>
+
+          <div class="callout">
+            <div class="q"><span class="tok">{{AHEAD_QUOTE}}</span></div>
+          </div>
+        </div>
+
+        <div style="display: flex; flex-direction: column; justify-content: flex-start;">
+          <div class="kicker blue">Week ahead</div>
+          <div class="placeholder lg" style="margin-top: 28px;">
+            <span class="tok">{{NEXT_WEEK_PREVIEW}}</span>
+          </div>
+          <div class="placeholder-note" style="margin-top: 32px;">
+            <span class="tok">{{AHEAD_DETAIL}}</span>
+          </div>
+
+          <div style="margin-top: 56px; padding-top: 24px; border-top: 1px solid var(--rule); display: grid; grid-template-columns: 1fr 1fr; gap: 24px;">
+            <div>
+              <div class="kicker xs gray">Read</div>
+              <div style="font-size: 24px; font-weight: 600; margin-top: 8px; color: var(--black);"><span class="tok">{{READ_LABEL}}</span></div>
+            </div>
+            <div>
+              <div class="kicker xs gray">Watch</div>
+              <div style="font-size: 24px; font-weight: 600; margin-top: 8px; color: var(--black);"><span class="tok">{{WATCH_LABEL}}</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Footer -->
+      <div class="footer">
+        <div class="meta-block">
+          <span class="tok dark">{{COURSE_CODE}}</span> &nbsp;·&nbsp; Week <span class="tok dark">{{WEEK_NUMBER}}</span> &nbsp;·&nbsp; Reich College of Education
+        </div>
+        <div class="dev-marker">[ Slide 5 of 6 — Ahead ]</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       SLIDE 6 — SIGN-OFF
+       ========================================================= -->
+  <section data-screen-label="06 Sign-off">
+    <div class="slide">
+      <!-- Top bar -->
+      <div class="topbar">
+        <div>
+          <div class="kicker blue">Appalachian State · Reich College of Education</div>
+          <div class="kicker sm gray" style="margin-top: 8px; font-weight: 500;">
+            Media, Career Studies &amp; Leadership Development
+          </div>
+        </div>
+        <div class="kicker sm gray" style="font-family: var(--mono); letter-spacing: 1px;">06 / 06</div>
+      </div>
+
+      <!-- Gold rule -->
+      <div class="gold-rule" style="top: 232px;"></div>
+
+      <!-- Meta row -->
+      <div class="meta-row" style="top: 268px;">
+        <span><span class="tok dark">{{COURSE_CODE}}</span> &nbsp;·&nbsp; Week <span class="tok dark">{{WEEK_NUMBER}}</span></span>
+        <span class="section-marker"><span class="bar"></span><span>Sign-off</span></span>
+      </div>
+
+      <!-- Sign-off message -->
+      <div style="position: absolute; left: var(--pad-x); right: var(--pad-x); top: 380px;">
+        <div style="font-size: 160px; font-weight: 800; letter-spacing: -6px; line-height: 0.92; color: var(--black); max-width: 1700px;">
+          <span class="tok dark" style="font-size: 0.95em; padding: 8px 22px;">{{SIGNOFF_LINE}}</span>
+        </div>
+        <div class="lead" style="margin-top: 40px;">
+          <span class="tok">{{SIGNOFF_NOTE}}</span>
+        </div>
+      </div>
+
+      <!-- Footer -->
+      <div class="footer">
+        <div class="meta-block">
+          Reich College of Education &nbsp;·&nbsp; Appalachian State University
+        </div>
+        <div class="dev-marker">[ Slide 6 of 6 — Sign-off ]</div>
+      </div>
+    </div>
+  </section>
+
+</deck-stage>
+
+<script src="deck-stage.js"></script>
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>App State Email Signature — Options</title>
+<style>
+  html, body { margin: 0; padding: 0; height: 100%; background: #f4f3ee; }
+  body { font-family: Helvetica, Arial, sans-serif; }
+</style>
+</head>
+<body>
+<div id="root"></div>
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+
+<script type="text/babel" src="design-canvas.jsx"></script>
+<script type="text/babel" src="signatures.jsx"></script>
+
+<script type="text/babel">
+function App() {
+  return (
+    <DesignCanvas
+      title="Email signature — exploration"
+      subtitle="A, B, D — now with the official Block A logo dropped in (A & D), and the headline scaled down on B."
+    >
+      <DCSection id="variants" title="Signature variants">
+        <DCArtboard id="a" label="A · Classic — gold rule + Block A" width={760} height={560}>
+          <EmailFrame><SigA /></EmailFrame>
+        </DCArtboard>
+
+        <DCArtboard id="b" label="B · Modern minimal — name as headline" width={760} height={560}>
+          <EmailFrame><SigB /></EmailFrame>
+        </DCArtboard>
+
+        <DCArtboard id="d" label="D · Compact — Block A + labeled meta row" width={760} height={560}>
+          <EmailFrame><SigD /></EmailFrame>
+        </DCArtboard>
+      </DCSection>
+
+      <DCSection id="notes" title="Notes & next steps">
+        <DCArtboard id="logos" label="Logo guidance" width={760} height={400}>
+          <div style={{ padding: '32px 40px', fontFamily: 'Helvetica, Arial, sans-serif', color: '#010101', fontSize: 14, lineHeight: 1.65, background: '#fff', height: '100%', boxSizing: 'border-box' }}>
+            <div style={{ fontSize: 11, letterSpacing: 1.4, textTransform: 'uppercase', color: '#4c4847', fontWeight: 600 }}>What logo to drop in</div>
+            <div style={{ height: 4, width: 48, background: '#FFCC00', margin: '10px 0 18px' }}></div>
+            <p style={{ margin: '0 0 12px' }}><b>Variant A & D</b> — use the official <b>Block A</b> mark (full-color on white). Available in University Communications &gt; Logos &gt; Block A.</p>
+            <p style={{ margin: '0 0 12px' }}><b>Variant B</b> — no logo needed; the gold rule carries the brand. Cleanest for plain-text-leaning replies.</p>
+            <p style={{ margin: '0 0 12px' }}><b>Variant C</b> — use the <b>Reich College of Education unit logo (titlemark)</b>, white/reverse version, since it sits on a black field. Or substitute the white Block A.</p>
+            <p style={{ margin: '0 0 0', color: '#4c4847', fontSize: 12 }}>I'm not generating official marks — once you tell me which direction you want, I'll output production-ready signature HTML with a clearly-marked &lt;img&gt; slot for you to point at the hosted logo URL (or paste in as base64).</p>
+          </div>
+        </DCArtboard>
+
+        <DCArtboard id="palette" label="Brand palette in use" width={760} height={400}>
+          <div style={{ padding: '32px 40px', fontFamily: 'Helvetica, Arial, sans-serif', color: '#010101', fontSize: 13, lineHeight: 1.6, background: '#fff', height: '100%', boxSizing: 'border-box' }}>
+            <div style={{ fontSize: 11, letterSpacing: 1.4, textTransform: 'uppercase', color: '#4c4847', fontWeight: 600 }}>Colors used</div>
+            <div style={{ height: 4, width: 48, background: '#FFCC00', margin: '10px 0 18px' }}></div>
+            <table style={{ borderCollapse: 'collapse', fontSize: 13 }}>
+              <tbody>
+                {[
+                  ['App State Gold', '#FFCC00', 'primary accent — at least 10% per brand guide'],
+                  ['Black', '#010101', 'primary text'],
+                  ['Dark Gray', '#4c4847', 'secondary text, addresses'],
+                  ['Medium Gray', '#b2b3b3', 'meta labels, dividers'],
+                  ['Light Gray', '#d6d6d7', 'rules and frames'],
+                ].map(([name, hex, use]) => (
+                  <tr key={hex}>
+                    <td style={{ padding: '6px 14px 6px 0' }}><div style={{ width: 24, height: 24, background: hex, border: '1px solid #d6d6d7' }}></div></td>
+                    <td style={{ padding: '6px 16px 6px 0', fontWeight: 600 }}>{name}</td>
+                    <td style={{ padding: '6px 16px 6px 0', fontFamily: 'ui-monospace, Menlo, monospace', fontSize: 12, color: '#4c4847' }}>{hex}</td>
+                    <td style={{ padding: '6px 0', color: '#4c4847' }}>{use}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </DCArtboard>
+      </DCSection>
+    </DesignCanvas>
+  );
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+</script>
+</body>
+</html>

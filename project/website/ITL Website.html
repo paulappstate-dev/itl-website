@@ -1,0 +1,1436 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ITL · International Leadership Graduate Certificate · App State</title>
+<style>
+  :root {
+    --gold: #FFCC00;
+    --gold-dark: #d7a527;
+    --black: #010101;
+    --ink: #1a1a1a;
+    --paper: #f4f3ee;
+    --paper-2: #ece9e1;
+    --white: #ffffff;
+    --blue: #03659c;
+    --orange: #c6602a;
+    --green: #69aa61;
+    --roof: #537a6b;
+    --stone: #d5c99a;
+    --brown: #7b541e;
+    --gray-l: #d6d6d7;
+    --gray-m: #b2b3b3;
+    --gray-d: #4c4847;
+
+    --sans: Arial, "Helvetica Neue", Helvetica, sans-serif;
+    --serif: "Times New Roman", Times, serif;
+    --mono: ui-monospace, "SFMono-Regular", "Courier New", monospace;
+
+    --max: 1320px;
+    --pad-x: clamp(20px, 4vw, 56px);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    background: var(--paper);
+    color: var(--black);
+    font-family: var(--sans);
+    font-size: 16px;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  img { max-width: 100%; display: block; }
+  a { color: inherit; text-decoration: none; }
+  button { font: inherit; cursor: pointer; }
+
+  /* ---------- atomic type ---------- */
+  .kicker {
+    font-size: 11px;
+    letter-spacing: 2.4px;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: var(--gray-d);
+  }
+  .kicker--gold { color: var(--gold); }
+  .kicker--black { color: var(--black); }
+
+  .display {
+    font-family: var(--sans);
+    font-weight: 900;
+    letter-spacing: -0.04em;
+    line-height: 0.92;
+    text-wrap: balance;
+  }
+  .display em {
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 400;
+    letter-spacing: -0.03em;
+  }
+
+  .rule {
+    height: 3px; width: 40px; background: var(--gold); border: 0; margin: 18px 0;
+  }
+  .rule--black { background: var(--black); }
+  .rule--wide { width: 100%; height: 1px; background: var(--gray-l); }
+  .rule--black-wide { width: 100%; height: 1px; background: var(--black); }
+
+  /* ITL stamp — pulled straight from the trifold */
+  .stamp {
+    font-family: var(--sans);
+    font-weight: 900;
+    color: var(--gold);
+    background: var(--black);
+    padding: 4px 9px;
+    display: inline-block;
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+  }
+
+  /* ---------- layout primitives ---------- */
+  .wrap {
+    max-width: var(--max);
+    margin: 0 auto;
+    padding-left: var(--pad-x);
+    padding-right: var(--pad-x);
+  }
+
+  section { position: relative; }
+
+  /* ---------- top utility bar ---------- */
+  .util {
+    background: var(--black);
+    color: var(--white);
+    font-size: 11px;
+    letter-spacing: 1.6px;
+    text-transform: uppercase;
+    font-weight: 700;
+  }
+  .util .wrap {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 36px;
+    gap: 24px;
+  }
+  .util a:hover { color: var(--gold); }
+  .util .left { display: flex; gap: 20px; }
+  .util .right { display: flex; gap: 20px; color: var(--gray-l); }
+  .util .right .pipe { color: var(--gold); }
+
+  /* ---------- main nav ---------- */
+  .nav {
+    background: var(--paper);
+    border-bottom: 1px solid var(--gray-l);
+    position: sticky; top: 0; z-index: 50;
+  }
+  .nav .row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    height: 76px;
+  }
+  .nav-burger {
+    display: none;
+    background: var(--black); color: var(--gold);
+    border: 1px solid var(--black);
+    width: 44px; height: 44px;
+    align-items: center; justify-content: center;
+    flex-direction: column; gap: 4px;
+    padding: 0;
+  }
+  .nav-burger span {
+    display: block; width: 18px; height: 2px; background: var(--gold);
+    transition: transform .2s ease, opacity .2s ease;
+  }
+  .nav-burger[aria-expanded="true"] span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+  .nav-burger[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+  .nav-burger[aria-expanded="true"] span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+
+  /* mobile section-jump drawer (attached to sticky nav) */
+  .nav-drawer {
+    display: none;
+    border-top: 1px solid var(--gray-l);
+    background: var(--paper);
+    overflow: hidden;
+    max-height: 0;
+    transition: max-height .25s ease;
+  }
+  .nav-drawer.open { display: block; max-height: 80vh; }
+  .nav-drawer ol {
+    list-style: none; margin: 0; padding: 0;
+  }
+  .nav-drawer ol li a {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 16px var(--pad-x);
+    border-top: 1px solid var(--gray-l);
+    font-size: 15px; font-weight: 700; letter-spacing: -0.01em;
+  }
+  .nav-drawer ol li:first-child a { border-top: 0; }
+  .nav-drawer ol li a:hover { background: var(--gold); color: var(--black); }
+  .nav-drawer ol li a .num {
+    font-family: var(--mono); font-size: 11px; color: var(--gray-d);
+    letter-spacing: 1px; font-weight: 700;
+  }
+  .nav-drawer .drawer-cta {
+    display: block; margin: 14px var(--pad-x) 20px;
+    background: var(--gold); color: var(--black);
+    text-align: center; padding: 14px 16px;
+    font-size: 12px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
+    border: 1px solid var(--black);
+  }
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    min-width: 0;
+  }
+  .brand img { width: 38px; height: auto; }
+  .brand .lockup {
+    display: flex; flex-direction: column; line-height: 1.05;
+  }
+  .brand .lockup .l1 {
+    font-size: 9.5px; letter-spacing: 2px; text-transform: uppercase; font-weight: 700; color: var(--gray-d);
+  }
+  .brand .lockup .l2 {
+    font-size: 17px; font-weight: 800; letter-spacing: -0.02em; margin-top: 2px;
+  }
+  .brand .lockup .l2 .itl {
+    background: var(--black); color: var(--gold); padding: 0 6px; margin-left: 4px;
+    font-weight: 900; letter-spacing: -0.04em;
+  }
+
+  .nav ul {
+    list-style: none; padding: 0; margin: 0;
+    display: flex; gap: 28px;
+    font-size: 13.5px;
+    font-weight: 600;
+  }
+  .nav ul a {
+    padding: 8px 0;
+    border-bottom: 2px solid transparent;
+    transition: border-color .15s ease, color .15s ease;
+  }
+  .nav ul a:hover { border-color: var(--gold); }
+  .nav ul a.active { border-color: var(--black); }
+
+  .nav .cta {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: var(--black); color: var(--gold);
+    padding: 11px 16px;
+    font-size: 11.5px; font-weight: 700; letter-spacing: 1.8px; text-transform: uppercase;
+    border: 1px solid var(--black);
+    transition: background .15s ease, color .15s ease;
+  }
+  .nav .cta:hover { background: var(--gold); color: var(--black); }
+  .nav .actions { display: flex; align-items: center; gap: 12px; }
+
+  /* ---------- hero ---------- */
+  .hero {
+    padding: clamp(48px, 8vw, 96px) 0 clamp(48px, 6vw, 88px);
+    background: var(--paper);
+    border-bottom: 1px solid var(--gray-l);
+    position: relative;
+    overflow: hidden;
+  }
+  .hero .meta {
+    display: flex; justify-content: space-between; align-items: baseline;
+    padding-bottom: 18px;
+    border-bottom: 1px solid var(--gray-l);
+    margin-bottom: 36px;
+  }
+  .hero .meta .right { color: var(--gray-d); }
+  .hero .meta .right .pipe { color: var(--gold); padding: 0 4px; }
+
+  .hero h1 {
+    font-family: var(--sans);
+    margin: 0;
+    font-size: clamp(64px, 12vw, 188px);
+    font-weight: 900;
+    letter-spacing: -0.045em;
+    line-height: 0.86;
+  }
+  .hero h1 em {
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 400;
+    color: var(--blue);
+    letter-spacing: -0.03em;
+  }
+  .hero .lede {
+    margin-top: 36px;
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: 56px;
+    align-items: start;
+  }
+  .hero .lede .body {
+    font-size: clamp(17px, 1.6vw, 21px);
+    line-height: 1.45;
+    color: var(--ink);
+    max-width: 56ch;
+  }
+  .hero .lede .body strong { font-weight: 800; }
+
+  .hero .lede .meta-card {
+    background: var(--black);
+    color: var(--white);
+    padding: 24px;
+  }
+  .hero .lede .meta-card dl {
+    margin: 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px 24px;
+  }
+  .hero .lede .meta-card dt {
+    font-size: 10.5px;
+    letter-spacing: 1.8px;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: var(--gold);
+  }
+  .hero .lede .meta-card dd {
+    margin: 4px 0 0; font-size: 14.5px; line-height: 1.35; font-weight: 600;
+  }
+
+  .hero .cta-row {
+    margin-top: 36px;
+    display: flex; gap: 14px; flex-wrap: wrap;
+  }
+  .btn {
+    display: inline-flex; align-items: center; gap: 10px;
+    padding: 14px 20px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    border: 1px solid var(--black);
+    transition: background .15s ease, color .15s ease;
+  }
+  .btn--primary { background: var(--gold); color: var(--black); }
+  .btn--primary:hover { background: var(--black); color: var(--gold); }
+  .btn--ghost { background: transparent; color: var(--black); }
+  .btn--ghost:hover { background: var(--black); color: var(--gold); }
+  .btn--dark { background: var(--black); color: var(--gold); border-color: var(--black); }
+  .btn--dark:hover { background: var(--gold); color: var(--black); }
+
+  /* ---------- "at a glance" strip ---------- */
+  .glance {
+    background: var(--gold);
+    color: var(--black);
+    border-top: 1px solid var(--black);
+    border-bottom: 1px solid var(--black);
+  }
+  .glance .wrap {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    padding-top: 28px;
+    padding-bottom: 28px;
+    gap: 24px;
+  }
+  .glance .stat {
+    border-left: 1px solid rgba(0,0,0,0.18);
+    padding-left: 20px;
+  }
+  .glance .stat:first-child { border-left: 0; padding-left: 0; }
+  .glance .n {
+    font-size: clamp(40px, 4.5vw, 64px);
+    font-weight: 900;
+    letter-spacing: -0.04em;
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+  }
+  .glance .l {
+    margin-top: 8px;
+    font-size: 11px; letter-spacing: 2px; text-transform: uppercase; font-weight: 700;
+  }
+
+  /* ---------- generic section header ---------- */
+  .sec {
+    padding: clamp(56px, 8vw, 112px) 0;
+  }
+  .sec--paper { background: var(--paper); }
+  .sec--white { background: var(--white); }
+  .sec--paper2 { background: var(--paper-2); }
+  .sec--dark { background: var(--black); color: var(--white); }
+
+  .sec-head {
+    display: grid;
+    grid-template-columns: 1fr 1.4fr;
+    gap: 48px;
+    margin-bottom: 56px;
+    align-items: end;
+  }
+  .sec-head h2 {
+    margin: 8px 0 0;
+    font-size: clamp(40px, 5.5vw, 76px);
+    font-weight: 900;
+    letter-spacing: -0.035em;
+    line-height: 0.95;
+    text-wrap: balance;
+  }
+  .sec-head h2 em {
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 400;
+  }
+  .sec-head .intro {
+    font-size: clamp(15px, 1.4vw, 18px);
+    line-height: 1.55;
+    color: var(--gray-d);
+    max-width: 52ch;
+  }
+  .sec--dark .sec-head .intro { color: var(--gray-l); }
+  .sec--dark .kicker { color: var(--gold); }
+
+  /* ---------- pillars ---------- */
+  .pillars {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--black);
+    border: 1px solid var(--black);
+  }
+  .pillar {
+    padding: 32px 28px 32px;
+    color: var(--white);
+    display: flex; flex-direction: column;
+    min-height: 380px;
+  }
+  .pillar--blue { background: var(--blue); }
+  .pillar--orange { background: var(--orange); }
+  .pillar--green { background: var(--green); }
+
+  .pillar .num {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 2px;
+    color: var(--gold);
+    margin-bottom: auto;
+  }
+  .pillar h3 {
+    font-size: 30px;
+    font-weight: 800;
+    letter-spacing: -0.025em;
+    line-height: 1.0;
+    margin: 24px 0 14px;
+    text-wrap: balance;
+  }
+  .pillar p {
+    margin: 0;
+    font-size: 17px;
+    line-height: 1.55;
+    color: var(--white);
+  }
+  .pillar h3 { font-size: 34px; }
+  .pillar ul {
+    list-style: none; margin: 20px 0 0; padding: 0;
+    border-top: 1px solid rgba(255,255,255,0.35);
+  }
+  .pillar ul li {
+    padding: 11px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.22);
+    font-size: 15px;
+    display: flex; justify-content: space-between; gap: 8px;
+    font-weight: 600;
+  }
+  .pillar ul li span:last-child { font-family: var(--mono); color: var(--white); font-size: 12.5px; opacity: 0.85; font-weight: 500; }
+
+  /* ---------- signature feature (virtual collaboration) ---------- */
+  .signature {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: 0;
+    border: 1px solid var(--black);
+  }
+  .signature .left {
+    background: var(--black);
+    color: var(--white);
+    padding: clamp(36px, 4vw, 56px);
+    display: flex; flex-direction: column; justify-content: space-between;
+    min-height: 540px;
+  }
+  .signature .left .badge {
+    align-self: flex-start;
+    display: inline-flex; align-items: center; gap: 10px;
+    background: var(--gold); color: var(--black);
+    padding: 7px 12px;
+    font-size: 11px; letter-spacing: 2px; text-transform: uppercase; font-weight: 700;
+  }
+  .signature .left h3 {
+    font-size: clamp(40px, 4.5vw, 64px);
+    font-weight: 900;
+    letter-spacing: -0.04em;
+    line-height: 0.95;
+    margin: 36px 0 0;
+  }
+  .signature .left h3 em {
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 400;
+    color: var(--gold);
+  }
+  .signature .left .body {
+    margin-top: 28px;
+    font-size: 15.5px;
+    line-height: 1.6;
+    color: var(--gray-l);
+    max-width: 48ch;
+  }
+
+  .signature .right {
+    background: var(--paper);
+    padding: clamp(36px, 4vw, 56px);
+    display: flex; flex-direction: column; gap: 24px;
+  }
+  .signature .right .row {
+    display: grid;
+    grid-template-columns: 64px 1fr;
+    gap: 18px;
+    align-items: start;
+    padding: 18px 0;
+    border-top: 1px solid var(--gray-l);
+  }
+  .signature .right .row:first-child { border-top: 0; padding-top: 0; }
+  .signature .right .row .step {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--white);
+    background: var(--black);
+    padding: 6px 8px;
+    text-align: center;
+    letter-spacing: 1px;
+  }
+  .signature .right .row h4 {
+    margin: 0;
+    font-size: 17px;
+    font-weight: 800;
+    letter-spacing: -0.01em;
+  }
+  .signature .right .row p {
+    margin: 4px 0 0;
+    font-size: 13.5px;
+    line-height: 1.55;
+    color: var(--gray-d);
+  }
+
+  /* ---------- coursework ---------- */
+  .courses {
+    border-top: 1px solid var(--black);
+  }
+  .course {
+    display: grid;
+    grid-template-columns: 80px 1.4fr 2fr 100px;
+    gap: 28px;
+    padding: 24px 0;
+    border-bottom: 1px solid var(--gray-l);
+    align-items: baseline;
+  }
+  .course .code {
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.5px;
+    color: var(--gold);
+    background: var(--black);
+    padding: 5px 8px;
+    align-self: start;
+    display: inline-block;
+    font-weight: 700;
+  }
+  .course h3 {
+    font-size: 22px;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    margin: 0;
+    line-height: 1.15;
+  }
+  .course p {
+    margin: 0;
+    font-size: 14.5px;
+    line-height: 1.55;
+    color: var(--gray-d);
+  }
+  .course .credits {
+    font-size: 12px; letter-spacing: 2px; text-transform: uppercase;
+    font-weight: 700; color: var(--gray-d); text-align: right;
+  }
+  .course.pillar-blue h3 { box-shadow: inset 6px 0 0 var(--blue); padding-left: 14px; }
+  .course.pillar-orange h3 { box-shadow: inset 6px 0 0 var(--orange); padding-left: 14px; }
+  .course.pillar-green h3 { box-shadow: inset 6px 0 0 var(--green); padding-left: 14px; }
+  .course.pillar-roof h3 { box-shadow: inset 6px 0 0 var(--roof); padding-left: 14px; }
+  .course.pillar-gold h3 { box-shadow: inset 6px 0 0 var(--gold); padding-left: 14px; }
+
+  /* ---------- who it's for / audience grid ---------- */
+  .who {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+  .who .card {
+    background: var(--white);
+    border: 1px solid var(--black);
+    border-top-width: 8px;
+    padding: 28px 24px;
+    display: flex; flex-direction: column;
+    min-height: 240px;
+    position: relative;
+  }
+  .who .card.tone-blue { border-top-color: var(--blue); background: color-mix(in oklab, var(--blue) 7%, var(--white)); }
+  .who .card.tone-orange { border-top-color: var(--orange); background: color-mix(in oklab, var(--orange) 7%, var(--white)); }
+  .who .card.tone-green { border-top-color: var(--green); background: color-mix(in oklab, var(--green) 8%, var(--white)); }
+  .who .card .label {
+    font-size: 11px; letter-spacing: 2px; text-transform: uppercase; font-weight: 700; color: var(--black);
+    display: inline-block; padding: 4px 8px; align-self: flex-start;
+  }
+  .who .card.tone-blue .label { background: var(--blue); color: var(--white); }
+  .who .card.tone-orange .label { background: var(--orange); color: var(--white); }
+  .who .card.tone-green .label { background: var(--green); color: var(--white); }
+  .who .card h3 {
+    margin: 10px 0 0;
+    font-size: 24px;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+  }
+  .who .card p {
+    margin: 12px 0 0;
+    font-size: 14px;
+    line-height: 1.55;
+    color: var(--gray-d);
+  }
+  .who .card .corner {
+    margin-top: auto;
+    font-family: var(--mono);
+    font-size: 10.5px;
+    color: var(--black);
+    align-self: flex-start;
+    padding-top: 24px;
+  }
+  .who .card .corner span { color: var(--gold); background: var(--black); padding: 2px 6px; margin-right: 8px; }
+
+  /* ---------- portfolio band ---------- */
+  .portfolio .wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center; }
+  .portfolio h2 {
+    font-size: clamp(40px, 5vw, 72px);
+    font-weight: 900;
+    letter-spacing: -0.035em;
+    line-height: 0.95;
+    margin: 12px 0 0;
+  }
+  .portfolio h2 em { font-family: var(--serif); font-style: italic; font-weight: 400; color: var(--gold); }
+  .portfolio .grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 1px;
+    background: var(--gold); border: 1px solid var(--gold);
+  }
+  .portfolio .grid .cell {
+    background: var(--black);
+    padding: 24px;
+    color: var(--white);
+    min-height: 160px;
+    display: flex; flex-direction: column; justify-content: space-between;
+  }
+  .portfolio .grid .cell .n { font-family: var(--mono); font-size: 11px; color: var(--gold); }
+  .portfolio .grid .cell .t { font-size: 18px; font-weight: 700; letter-spacing: -0.01em; line-height: 1.2; }
+
+  /* ---------- testimonial / carousel ---------- */
+  .quote {
+    background: var(--blue);
+    color: var(--white);
+  }
+  .quote .wrap {
+    padding-top: clamp(48px, 6vw, 80px);
+    padding-bottom: clamp(48px, 6vw, 80px);
+    display: grid;
+    grid-template-columns: 320px 1fr;
+    gap: clamp(28px, 4vw, 56px);
+    align-items: stretch;
+  }
+  .quote .head {
+    grid-column: 1 / -1;
+    display: flex; justify-content: space-between; align-items: baseline; gap: 16px;
+    padding-bottom: 18px;
+    border-bottom: 1px solid rgba(255,255,255,0.25);
+    margin-bottom: 8px;
+  }
+  .quote .head .kicker { color: var(--gold); }
+  .quote .head .controls { display: flex; align-items: center; gap: 10px; }
+  .quote .head .controls button {
+    background: transparent; color: var(--white);
+    border: 1px solid rgba(255,255,255,0.5);
+    width: 38px; height: 38px;
+    display: inline-flex; align-items: center; justify-content: center;
+    font-size: 18px; line-height: 1; padding: 0;
+    transition: background .15s ease, color .15s ease, border-color .15s ease;
+  }
+  .quote .head .controls button:hover { background: var(--gold); color: var(--black); border-color: var(--gold); }
+  .quote .head .controls .counter {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--gold);
+    letter-spacing: 1px;
+    margin: 0 8px;
+    min-width: 40px; text-align: center;
+  }
+
+  .quote .viewport { position: relative; overflow: hidden; grid-column: 1 / -1; display: grid; grid-template-columns: 320px 1fr; gap: clamp(28px, 4vw, 56px); align-items: stretch; }
+  .quote .slide { display: contents; }
+  .quote .slide:not(.active) { display: none; }
+
+  .quote .photo {
+    background: var(--gray-d);
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgba(0,0,0,0.2);
+  }
+  .quote .photo .placeholder {
+    position: absolute; inset: 0;
+    display: flex; align-items: center; justify-content: center;
+    text-align: center;
+    font-family: var(--mono); font-size: 11px;
+    letter-spacing: 1.5px; text-transform: uppercase;
+    color: rgba(255,255,255,0.55);
+    background:
+      repeating-linear-gradient(135deg,
+        rgba(255,255,255,0.04) 0 14px,
+        rgba(255,255,255,0.08) 14px 28px);
+    padding: 16px;
+    line-height: 1.5;
+  }
+  .quote .photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .quote .photo .tag {
+    position: absolute; left: 12px; bottom: 12px;
+    background: var(--gold); color: var(--black);
+    padding: 5px 8px; font-size: 10px; font-weight: 700; letter-spacing: 1.6px; text-transform: uppercase;
+  }
+
+  .quote .body { display: flex; flex-direction: column; justify-content: center; }
+  .quote blockquote {
+    margin: 0;
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: clamp(22px, 2.6vw, 36px);
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+    max-width: 32ch;
+  }
+  .quote blockquote .mark { color: var(--gold); }
+  .quote cite {
+    display: block; margin-top: 24px;
+    font-style: normal; font-family: var(--sans);
+    font-size: 11px; letter-spacing: 2px; text-transform: uppercase;
+    font-weight: 700; color: var(--gold);
+  }
+  .quote cite .who-name { display: block; color: var(--white); font-weight: 800; font-size: 16px; letter-spacing: -0.01em; text-transform: none; margin-top: 6px; }
+  .quote cite .who-role { display: block; color: rgba(255,255,255,0.7); font-weight: 500; font-size: 13px; letter-spacing: 0; text-transform: none; margin-top: 2px; }
+
+  .quote .dots {
+    grid-column: 1 / -1;
+    display: flex; gap: 8px; margin-top: 24px;
+  }
+  .quote .dots button {
+    width: 28px; height: 4px; background: rgba(255,255,255,0.3); border: 0; padding: 0;
+    cursor: pointer; transition: background .15s ease;
+  }
+  .quote .dots button.active { background: var(--gold); }
+
+  /* ---------- admissions ---------- */
+  .admit .col h3 {
+    font-size: 14px; letter-spacing: 2px; text-transform: uppercase; font-weight: 700;
+    margin: 0 0 16px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--black);
+  }
+  .admit ol {
+    margin: 0; padding: 0; list-style: none; counter-reset: step;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0 48px;
+  }
+  .admit ol li {
+    counter-increment: step;
+    display: grid;
+    grid-template-columns: 56px 1fr;
+    gap: 16px;
+    padding: 20px 0;
+    border-bottom: 1px solid var(--gray-l);
+  }
+  .admit ol li::before {
+    content: counter(step, decimal-leading-zero);
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--gold);
+    background: var(--black);
+    padding: 6px 8px;
+    align-self: start;
+    justify-self: start;
+    letter-spacing: 1px;
+    font-weight: 700;
+  }
+  .admit ol li .t { font-weight: 800; font-size: 16px; }
+  .admit ol li .d { font-size: 13.5px; color: var(--gray-d); margin-top: 4px; line-height: 1.5; }
+
+  .faq details {
+    border-bottom: 1px solid var(--gray-l);
+    padding: 18px 0;
+  }
+  .faq details:first-of-type { border-top: 1px solid var(--gray-l); }
+  .faq summary {
+    list-style: none;
+    cursor: pointer;
+    display: flex; justify-content: space-between; align-items: center; gap: 24px;
+    font-size: 16px; font-weight: 700;
+    letter-spacing: -0.01em;
+  }
+  .faq summary::-webkit-details-marker { display: none; }
+  .faq summary::after { content: "+"; font-size: 22px; color: var(--gold); background: var(--black); width: 28px; height: 28px; display: inline-flex; align-items: center; justify-content: center; font-weight: 700; flex-shrink: 0; }
+  .faq details[open] summary::after { content: "−"; }
+  .faq .a { font-size: 14px; color: var(--gray-d); line-height: 1.6; margin-top: 10px; max-width: 60ch; }
+
+  /* ---------- big CTA block ---------- */
+  .megacta {
+    background: var(--gold);
+    color: var(--black);
+    border-top: 1px solid var(--black);
+    border-bottom: 1px solid var(--black);
+  }
+  .megacta .wrap {
+    padding-top: clamp(72px, 10vw, 144px);
+    padding-bottom: clamp(72px, 10vw, 144px);
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    gap: 56px;
+    align-items: end;
+  }
+  .megacta h2 {
+    margin: 0;
+    font-size: clamp(56px, 9vw, 144px);
+    font-weight: 900;
+    letter-spacing: -0.045em;
+    line-height: 0.86;
+  }
+  .megacta h2 em { font-family: var(--serif); font-style: italic; font-weight: 400; letter-spacing: -0.03em; }
+  .megacta .right {
+    border-left: 2px solid var(--black);
+    padding-left: 28px;
+  }
+  .megacta .right p {
+    margin: 0 0 24px; font-size: 15px; line-height: 1.55; max-width: 32ch;
+  }
+  .megacta .cta-row { display: flex; flex-direction: column; gap: 12px; align-items: flex-start; }
+
+  /* ---------- footer ---------- */
+  footer.site {
+    background: var(--black);
+    color: var(--white);
+    padding: 72px 0 32px;
+  }
+  footer.site .top { display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr; gap: 40px; }
+  footer.site h4 { font-size: 11px; letter-spacing: 2.4px; text-transform: uppercase; font-weight: 700; color: var(--gold); margin: 0 0 14px; }
+  footer.site ul { list-style: none; margin: 0; padding: 0; }
+  footer.site ul li { padding: 4px 0; font-size: 13.5px; }
+  footer.site ul li a:hover { color: var(--gold); }
+  footer.site .brand-block { display: flex; gap: 14px; align-items: flex-start; }
+  footer.site .brand-block img { width: 56px; }
+  footer.site .brand-block .name { font-weight: 800; font-size: 16px; }
+  footer.site .brand-block .sub { color: var(--gray-l); font-size: 13px; margin-top: 6px; line-height: 1.45; max-width: 28ch; }
+  footer.site .bottom {
+    margin-top: 56px;
+    padding-top: 24px;
+    border-top: 1px solid var(--gray-d);
+    display: flex; justify-content: space-between; align-items: center;
+    font-size: 11px; letter-spacing: 1.6px; text-transform: uppercase; color: var(--gray-m);
+  }
+  footer.site .bottom .pipe { color: var(--gold); padding: 0 6px; }
+
+  /* ---------- responsive ---------- */
+  @media (max-width: 980px) {
+    .nav ul { display: none; }
+    .nav .cta { display: none; }
+    .nav-burger { display: inline-flex; }
+    .hero .lede { grid-template-columns: 1fr; gap: 32px; }
+    .glance .wrap { grid-template-columns: repeat(2, 1fr); }
+    .glance .stat:nth-child(3) { border-left: 0; padding-left: 0; }
+    .sec-head { grid-template-columns: 1fr; gap: 16px; }
+    .pillars { grid-template-columns: 1fr; }
+    .signature { grid-template-columns: 1fr; }
+    .who { grid-template-columns: 1fr; }
+    .portfolio .wrap { grid-template-columns: 1fr; }
+    .admit ol { grid-template-columns: 1fr; }
+    .megacta .wrap { grid-template-columns: 1fr; }
+    .megacta .right { border-left: 0; padding-left: 0; border-top: 2px solid var(--black); padding-top: 28px; }
+    footer.site .top { grid-template-columns: 1fr 1fr; }
+    .course { grid-template-columns: 80px 1fr; }
+    .course p, .course .credits { grid-column: 2; }
+    .course .credits { text-align: left; margin-top: 8px; }
+    .quote .wrap, .quote .viewport { grid-template-columns: 1fr; }
+    .quote .photo { aspect-ratio: 16 / 10; max-width: 320px; }
+  }
+
+  @media (min-width: 981px) {
+    .nav-burger, .nav-drawer { display: none !important; }
+  }
+</style>
+</head>
+<body>
+
+  <!-- utility / institutional bar -->
+  <div class="util">
+    <div class="wrap">
+      <div class="left">
+        <a href="#">Appalachian State</a>
+        <a href="#">Reich College of Education</a>
+        <a href="#">Media, Career &amp; Leadership Dev.</a>
+      </div>
+      <div class="right">
+        <a href="#">Apply</a><span class="pipe">/</span>
+        <a href="#">Request info</a><span class="pipe">/</span>
+        <a href="#">appstate.edu</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- main nav -->
+  <nav class="nav" id="site-nav">
+    <div class="wrap row">
+      <a href="#" class="brand">
+        <img src="block-a.png" alt="App State">
+        <span class="lockup">
+          <span class="l1">Appalachian State · RCOE</span>
+          <span class="l2">International Leadership <span class="itl">ITL</span></span>
+        </span>
+      </a>
+      <ul>
+        <li><a href="#program" class="active">Program</a></li>
+        <li><a href="#pillars">Three Pillars</a></li>
+        <li><a href="#portfolio">Portfolio</a></li>
+        <li><a href="#courses">Coursework</a></li>
+        <li><a href="#admissions">Admissions</a></li>
+        <li><a href="#faq">FAQ</a></li>
+      </ul>
+      <div class="actions">
+        <a href="#apply" class="cta">Apply →</a>
+        <button class="nav-burger" type="button" aria-expanded="false" aria-controls="nav-drawer" aria-label="Open section menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+    <div class="nav-drawer" id="nav-drawer">
+      <ol>
+        <li><a href="#program"><span>Program</span><span class="num">01</span></a></li>
+        <li><a href="#pillars"><span>Three Pillars</span><span class="num">02</span></a></li>
+        <li><a href="#portfolio"><span>Portfolio</span><span class="num">03</span></a></li>
+        <li><a href="#courses"><span>Coursework</span><span class="num">04</span></a></li>
+        <li><a href="#who"><span>Who it's for</span><span class="num">05</span></a></li>
+        <li><a href="#admissions"><span>Admissions</span><span class="num">06</span></a></li>
+        <li><a href="#faq"><span>FAQ</span><span class="num">07</span></a></li>
+      </ol>
+      <a href="#apply" class="drawer-cta">Apply →</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <header class="hero" id="program">
+    <div class="wrap">
+      <div class="meta">
+        <span class="kicker">Graduate Certificate <span style="color:var(--gold);">/</span> 15 Credits <span style="color:var(--gold);">/</span> Fully Online</span>
+      </div>
+
+      <h1>
+        Lead<br>
+        <em>across</em><br>
+        borders.
+      </h1>
+
+      <div class="lede">
+        <div class="body">
+          The <strong>Graduate Certificate in International Leadership</strong> prepares working professionals to lead with confidence across cultures, time zones, and organizational borders — anchored in the Cultural Intelligence (CQ) framework and built around a signature virtual collaboration with peers abroad.
+        </div>
+        <aside class="meta-card">
+          <dl>
+            <div><dt>Format</dt><dd>Fully online · asynchronous</dd></div>
+            <div><dt>Length</dt><dd>5 courses · 15 credits</dd></div>
+            <div><dt>Anchored in</dt><dd>CQ &amp; GLOBE frameworks</dd></div>
+            <div><dt>Signature</dt><dd>Virtual collaboration with peers abroad</dd></div>
+          </dl>
+        </aside>
+      </div>
+
+      <div class="cta-row">
+        <a class="btn btn--primary" href="#apply">Apply for Fall →</a>
+        <a class="btn btn--ghost" href="#info">Request information</a>
+        <a class="btn btn--ghost" href="#courses">Browse coursework</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- at-a-glance band -->
+  <section class="glance">
+    <div class="wrap">
+      <div class="stat"><div class="n">15</div><div class="l">Credit hours</div></div>
+      <div class="stat"><div class="n">5</div><div class="l">Courses</div></div>
+      <div class="stat"><div class="n">100<span style="font-size:0.55em">%</span></div><div class="l">Online · async</div></div>
+      <div class="stat"><div class="n">0</div><div class="l">Travel required</div></div>
+    </div>
+  </section>
+
+  <!-- three pillars -->
+  <section class="sec sec--paper" id="pillars">
+    <div class="wrap">
+      <header class="sec-head">
+        <div>
+          <span class="kicker">Three pillars</span>
+          <h2>What you build, <em>by design.</em></h2>
+        </div>
+        <p class="intro">
+          ITL braids three research-validated capacities into every course. They are how we structure the curriculum, how we sequence the practicum, and how graduates describe what changed.
+        </p>
+      </header>
+
+      <div class="pillars">
+        <article class="pillar pillar--blue">
+          <div class="num">01 / Cultural Intelligence</div>
+          <div>
+            <h3>Cultural<br>Intelligence</h3>
+            <p>The four-capability CQ framework — Drive, Knowledge, Strategy, Action — used by Fortune 500s, NGOs, and government agencies to develop globally effective leaders.</p>
+            <ul>
+              <li><span>CQ Drive</span><span>self</span></li>
+              <li><span>CQ Knowledge</span><span>study</span></li>
+              <li><span>CQ Strategy</span><span>plan</span></li>
+              <li><span>CQ Action</span><span>do</span></li>
+            </ul>
+          </div>
+        </article>
+        <article class="pillar pillar--orange">
+          <div class="num">02 / Cross-Cultural Comms</div>
+          <div>
+            <h3>Cross-Cultural<br>Communication</h3>
+            <p>The conversational tools that cross language, culture, and time-zone — practiced in real exchanges with peers abroad, not memorized from a textbook.</p>
+            <ul>
+              <li><span>High / Low context</span><span>read</span></li>
+              <li><span>Direct / Indirect</span><span>frame</span></li>
+              <li><span>Async by default</span><span>write</span></li>
+              <li><span>Conflict styles</span><span>repair</span></li>
+            </ul>
+          </div>
+        </article>
+        <article class="pillar pillar--green">
+          <div class="num">03 / Distributed Leadership</div>
+          <div>
+            <h3>Distributed<br>Leadership</h3>
+            <p>Recruit, motivate, and align teams across geographies. The patterns and current collaboration tooling that make remote work less remote.</p>
+            <ul>
+              <li><span>Team contracts</span><span>set</span></li>
+              <li><span>Async rituals</span><span>run</span></li>
+              <li><span>Decision logs</span><span>track</span></li>
+              <li><span>Trust at distance</span><span>build</span></li>
+            </ul>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- signature feature -->
+  <section class="sec sec--paper2" id="portfolio">
+    <div class="wrap">
+      <header class="sec-head">
+        <div>
+          <span class="kicker">Signature outcome</span>
+          <h2>A portfolio, <em>not just a transcript.</em></h2>
+        </div>
+        <p class="intro">
+          Every course leaves a real artifact behind. By graduation you carry a small, defensible body of work — the kind that moves a performance review, a job interview, or a consulting pitch.
+        </p>
+      </header>
+
+      <div class="signature">
+        <div class="left">
+          <span class="badge">Built over 5 courses</span>
+          <h3>You don't just<br>study leadership.<br><em>You ship it.</em></h3>
+          <p class="body">
+            Each ITL course produces something tangible — a guide, a playbook, an assessment, a deliverable. They stack into a portfolio you can put on a desk, in a slide, or on a hiring page. The work is yours; we just scaffold the reps.
+          </p>
+        </div>
+        <div class="right">
+          <div class="row">
+            <span class="step">01</span>
+            <div>
+              <h4>Cross-cultural communication guide</h4>
+              <p>A working manual for your own organization — high/low context, async patterns, conflict-repair scripts, decision norms you can hand a new hire on day one.</p>
+            </div>
+          </div>
+          <div class="row">
+            <span class="step">02</span>
+            <div>
+              <h4>Virtual collaboration playbook</h4>
+              <p>The rituals, tools, and team contracts that make distributed work actually work — written for the teams and time zones you actually lead.</p>
+            </div>
+          </div>
+          <div class="row">
+            <span class="step">03</span>
+            <div>
+              <h4>CQ self-assessment &amp; growth plan</h4>
+              <p>A full Cultural Intelligence profile (Drive / Knowledge / Strategy / Action) and a year-out development plan keyed to your real context.</p>
+            </div>
+          </div>
+          <div class="row">
+            <span class="step">04</span>
+            <div>
+              <h4>Capstone joint deliverable</h4>
+              <p>The work you co-produced with peers abroad in the practicum: artifact, reflection memo, and a one-page case study you can keep using.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- coursework -->
+  <section class="sec sec--white" id="courses">
+    <div class="wrap">
+      <header class="sec-head">
+        <div>
+          <span class="kicker">Coursework</span>
+          <h2>Five courses, <em>15 credits.</em></h2>
+        </div>
+        <p class="intro">
+          A focused sequence — every course earns its credit. Take one course per semester alongside your work, or accelerate. Designed for completion in 12–18 months.
+        </p>
+      </header>
+
+      <div class="courses">
+        <article class="course pillar-blue">
+          <div><span class="code">ITL 6100</span></div>
+          <h3>Cross-Cultural Communication</h3>
+          <p>Foundations of cultural intelligence in global leadership. Build a working CQ profile and a communication kit you can use Monday.</p>
+          <div class="credits">3 cr.</div>
+        </article>
+        <article class="course pillar-green">
+          <div><span class="code">ITL 6200</span></div>
+          <h3>Technology for International Collaboration</h3>
+          <p>Tools, rituals, and habits for leading distributed teams. Async-first patterns, modern collaboration stacks, and how to choose between them.</p>
+          <div class="credits">3 cr.</div>
+        </article>
+        <article class="course pillar-orange">
+          <div><span class="code">ITL 6300</span></div>
+          <h3>Leadership for Global Challenges</h3>
+          <p>Adaptive leadership frameworks for problems that cross borders — climate, health, supply, migration, technology policy.</p>
+          <div class="credits">3 cr.</div>
+        </article>
+        <article class="course pillar-roof">
+          <div><span class="code">ITL 6400</span></div>
+          <h3>Leadership for International Teams</h3>
+          <p>Recruit, motivate, and align teams across language and culture. Case-driven, with a heavy practice diet.</p>
+          <div class="credits">3 cr.</div>
+        </article>
+        <article class="course pillar-gold">
+          <div><span class="code">ITL 6500</span></div>
+          <h3>International Leadership Practicum</h3>
+          <p>Capstone — the signature virtual collaboration with peers abroad. Apply the full CQ toolkit through structured, coached work.</p>
+          <div class="credits">3 cr.</div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- pull quote / testimonial carousel -->
+  <section class="quote" id="voices">
+    <div class="wrap">
+      <div class="head">
+        <span class="kicker">Voices · ITL</span>
+        <div class="controls">
+          <button type="button" class="q-prev" aria-label="Previous quote">←</button>
+          <span class="counter"><span class="q-idx">01</span> / <span class="q-total">03</span></span>
+          <button type="button" class="q-next" aria-label="Next quote">→</button>
+        </div>
+      </div>
+
+      <div class="viewport" id="q-viewport">
+        <div class="slide active">
+          <div class="photo">
+            <div class="placeholder">Photo — student or grad<br>portrait 4 : 5</div>
+            <span class="tag">Graduate · ’24</span>
+          </div>
+          <div class="body">
+            <blockquote>
+              <span class="mark">“</span>I came in with twenty years of experience and still walked out with a new instrument in my hand.<span class="mark">”</span>
+            </blockquote>
+            <cite>
+              Recent graduate
+              <span class="who-name">Name, Title</span>
+              <span class="who-role">Director of operations · multinational NGO</span>
+            </cite>
+          </div>
+        </div>
+
+        <div class="slide">
+          <div class="photo">
+            <div class="placeholder">Photo — current student<br>portrait 4 : 5</div>
+            <span class="tag">Student · Cohort ’25</span>
+          </div>
+          <div class="body">
+            <blockquote>
+              <span class="mark">“</span>The practicum was the closest thing to actually leading abroad without leaving my desk — and harder, in the right ways.<span class="mark">”</span>
+            </blockquote>
+            <cite>
+              Current student
+              <span class="who-name">Name, Title</span>
+              <span class="who-role">Program manager · state health agency</span>
+            </cite>
+          </div>
+        </div>
+
+        <div class="slide">
+          <div class="photo">
+            <div class="placeholder">Photo — adjunct or partner<br>portrait 4 : 5</div>
+            <span class="tag">Adjunct faculty</span>
+          </div>
+          <div class="body">
+            <blockquote>
+              <span class="mark">“</span>What I appreciate is how seriously we take async — the kind of distributed practice most programs only describe.<span class="mark">”</span>
+            </blockquote>
+            <cite>
+              Adjunct faculty
+              <span class="who-name">Name, Title</span>
+              <span class="who-role">Practitioner · global education consulting</span>
+            </cite>
+          </div>
+        </div>
+      </div>
+
+      <div class="dots" id="q-dots">
+        <button type="button" class="active" aria-label="Quote 1"></button>
+        <button type="button" aria-label="Quote 2"></button>
+        <button type="button" aria-label="Quote 3"></button>
+      </div>
+    </div>
+  </section>
+
+  <!-- who it's for -->
+  <section class="sec sec--paper" id="who">
+    <div class="wrap">
+      <header class="sec-head">
+        <div>
+          <span class="kicker">Who it's for</span>
+          <h2>Working professionals, leading <em>across</em> something.</h2>
+        </div>
+        <p class="intro">
+          ITL is built for mid-career leaders whose work already touches more than one context — and who want the language, frameworks, and reps to lead it well.
+        </p>
+      </header>
+
+      <div class="who">
+        <article class="card tone-blue">
+          <span class="label">Sector A</span>
+          <h3>Business &amp; tech</h3>
+          <p>Product, ops, and people leaders managing distributed teams or working across regional markets.</p>
+          <span class="corner"><span>01</span>Remote-first orgs · Global brands</span>
+        </article>
+        <article class="card tone-orange">
+          <span class="label">Sector B</span>
+          <h3>Government &amp; nonprofit</h3>
+          <p>Foreign service, NGO program leads, international development professionals, military and civilian leaders.</p>
+          <span class="corner"><span>02</span>State Dept · USAID · NGOs · DoD</span>
+        </article>
+        <article class="card tone-green">
+          <span class="label">Sector C</span>
+          <h3>Education &amp; healthcare</h3>
+          <p>K-16 administrators, study-abroad directors, healthcare leaders running globally-recruited or globally-served teams.</p>
+          <span class="corner"><span>03</span>Schools · Systems · Hospitals</span>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- admissions -->
+  <section class="sec sec--paper admit" id="admissions">
+    <div class="wrap">
+      <header class="sec-head">
+        <div>
+          <span class="kicker">Admissions</span>
+          <h2>How to <em>apply.</em></h2>
+        </div>
+        <p class="intro">
+          A short, friendly path. We read for substance, not credentials — tell us how you actually lead and where you want this to go.
+        </p>
+      </header>
+
+      <div class="col">
+        <h3>The path</h3>
+        <ol>
+          <li><div><div class="t">Confirm fit</div><div class="d">A 20-minute call with the program director. We talk about your goals, your context, and whether ITL is the right move right now.</div></div></li>
+          <li><div><div class="t">Submit application</div><div class="d">App State Graduate School online application: transcripts, current résumé, and a short statement of professional purpose. No GRE.</div></div></li>
+          <li><div><div class="t">Two recommendations</div><div class="d">One professional, one academic preferred — but we read for substance, not credentials. Tell us how you actually lead.</div></div></li>
+          <li><div><div class="t">Decision in two weeks</div><div class="d">Rolling admissions for Fall and Spring starts. Aim to apply ~6 weeks before your intended term.</div></div></li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- faq -->
+  <section class="sec sec--paper2" id="faq">
+    <div class="wrap">
+      <header class="sec-head">
+        <div>
+          <span class="kicker">Common questions</span>
+          <h2>Asked &amp; <em>answered.</em></h2>
+        </div>
+        <p class="intro">
+          The questions we get most often. Don't see yours here? Reach out — we'd rather have the conversation.
+        </p>
+      </header>
+
+      <div class="faq">
+        <details open>
+          <summary>Is travel required?</summary>
+          <p class="a">No. The signature collaboration is virtual by design — you work directly with peers abroad without leaving your job or your zip code.</p>
+        </details>
+        <details>
+          <summary>How long does it take?</summary>
+          <p class="a">Most students complete the certificate in 12–18 months at one course per term. You can accelerate or slow down as life requires.</p>
+        </details>
+        <details>
+          <summary>Does this stack into a master's degree?</summary>
+          <p class="a">Yes. Credits earned in the certificate can be applied toward several App State graduate programs in education and leadership — we can map the path on your fit call.</p>
+        </details>
+        <details>
+          <summary>What does it cost?</summary>
+          <p class="a">App State graduate tuition rates apply; the program is eligible for federal financial aid. Many students are employer-sponsored — we'll help you build the case.</p>
+        </details>
+        <details>
+          <summary>What technology will I need?</summary>
+          <p class="a">A reliable computer, decent webcam and microphone, and broadband internet. We provide access to all coursework platforms and the collaboration stack used in the practicum.</p>
+        </details>
+        <details>
+          <summary>Are there scholarships?</summary>
+          <p class="a">Yes — a small number of partial scholarships are awarded each cycle, with priority for educators, public-sector professionals, and military-affiliated applicants.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- mega CTA -->
+  <section class="megacta" id="apply">
+    <div class="wrap">
+      <h2>
+        Leadership<br>
+        <em>without</em><br>
+        borders.
+      </h2>
+      <div class="right">
+        <p>Applications are open for Fall and Spring starts. Talk to the program director, request the full program packet, or apply today.</p>
+        <div class="cta-row">
+          <a href="#" class="btn btn--dark">Apply now →</a>
+          <a href="#" class="btn btn--ghost">Schedule a fit call</a>
+          <a href="#" class="btn btn--ghost">Download program packet (PDF)</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- footer -->
+  <footer class="site">
+    <div class="wrap">
+      <div class="top">
+        <div class="brand-block">
+          <img src="block-a.png" alt="App State">
+          <div>
+            <div class="name">Appalachian State University</div>
+            <div class="sub">Reich College of Education · Department of Media, Career Studies &amp; Leadership Development</div>
+          </div>
+        </div>
+        <div>
+          <h4>Program</h4>
+          <ul>
+            <li><a href="#pillars">Three pillars</a></li>
+            <li><a href="#portfolio">Portfolio</a></li>
+            <li><a href="#courses">Coursework</a></li>
+            <li><a href="#who">Who it's for</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Admissions</h4>
+          <ul>
+            <li><a href="#admissions">How to apply</a></li>
+            <li><a href="#">Tuition &amp; aid</a></li>
+            <li><a href="#">Schedule a call</a></li>
+            <li><a href="#">Request info</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Contact</h4>
+          <ul>
+            <li>mcl.appstate.edu/ITL</li>
+            <li>wallacepr@appstate.edu</li>
+            <li>+1 828.262.6571</li>
+            <li>ASU Box 32086 · Boone, NC</li>
+          </ul>
+        </div>
+      </div>
+      <div class="bottom">
+        <span>© Appalachian State University <span class="pipe">/</span> Reich College of Education <span class="pipe">/</span> ITL</span>
+        <span>Privacy <span class="pipe">·</span> Accessibility <span class="pipe">·</span> Title IX</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // ----- Mobile section-jump drawer (attached to sticky nav) -----
+    (function () {
+      var burger = document.querySelector('.nav-burger');
+      var drawer = document.getElementById('nav-drawer');
+      if (!burger || !drawer) return;
+
+      function setOpen(open) {
+        burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+        drawer.classList.toggle('open', open);
+      }
+      burger.addEventListener('click', function () {
+        var open = burger.getAttribute('aria-expanded') !== 'true';
+        setOpen(open);
+      });
+      // close on link tap so the jump is visible
+      drawer.querySelectorAll('a').forEach(function (a) {
+        a.addEventListener('click', function () { setOpen(false); });
+      });
+      // close on resize up to desktop
+      window.addEventListener('resize', function () {
+        if (window.innerWidth > 980) setOpen(false);
+      });
+    }());
+
+    // ----- Quote carousel -----
+    (function () {
+      var viewport = document.getElementById('q-viewport');
+      if (!viewport) return;
+      var slides = Array.from(viewport.querySelectorAll('.slide'));
+      var dots = Array.from(document.querySelectorAll('#q-dots button'));
+      var prev = document.querySelector('.q-prev');
+      var next = document.querySelector('.q-next');
+      var idxEl = document.querySelector('.q-idx');
+      var totalEl = document.querySelector('.q-total');
+      var i = 0;
+      function pad(n) { return n < 10 ? '0' + n : '' + n; }
+      function render() {
+        slides.forEach(function (s, n) { s.classList.toggle('active', n === i); });
+        dots.forEach(function (d, n) { d.classList.toggle('active', n === i); });
+        if (idxEl) idxEl.textContent = pad(i + 1);
+        if (totalEl) totalEl.textContent = pad(slides.length);
+      }
+      function go(delta) { i = (i + delta + slides.length) % slides.length; render(); }
+      prev && prev.addEventListener('click', function () { go(-1); });
+      next && next.addEventListener('click', function () { go(1); });
+      dots.forEach(function (d, n) { d.addEventListener('click', function () { i = n; render(); }); });
+      render();
+    }());
+  </script>
+</body>
+</html>
