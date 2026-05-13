@@ -522,12 +522,20 @@
     text-align: center;
     letter-spacing: 1px;
   }
+  .signature .right .row-blue  .step { background: var(--blue);  color: var(--white); }
+  .signature .right .row-green .step { background: var(--green); color: var(--white); }
+  .signature .right .row-brown .step { background: var(--brown); color: var(--white); }
+  .signature .right .row-gold  .step { background: var(--gold);  color: var(--black); }
   .signature .right .row h4 {
     margin: 0;
     font-size: 17px;
     font-weight: 800;
     letter-spacing: -0.01em;
   }
+  .signature .right .row-blue  h4 { color: var(--blue); }
+  .signature .right .row-green h4 { color: var(--green); }
+  .signature .right .row-brown h4 { color: var(--brown); }
+  .signature .right .row-gold  h4 { color: var(--gold-dark); }
   .signature .right .row p {
     margin: 4px 0 0;
     font-size: 13.5px;
@@ -667,8 +675,9 @@
     align-items: stretch;
   }
   .quote .sec-head {
+    display: block;
     grid-column: 1 / -1;
-    margin-bottom: 32px;
+    margin-bottom: 8px;
   }
   .quote .sec-head .kicker { color: var(--gold); }
   .quote .sec-head h2 { color: var(--white); }
@@ -1084,28 +1093,28 @@
           </p>
         </div>
         <div class="right">
-          <div class="row">
+          <div class="row row-blue">
             <span class="step">01</span>
             <div>
               <h4>Self-assessment + growth plan</h4>
               <p>Where you are now, what you'll work on next, and how you'll know it's moving.</p>
             </div>
           </div>
-          <div class="row">
+          <div class="row row-green">
             <span class="step">02</span>
             <div>
               <h4>Cross-cultural playbook</h4>
               <p>Communication patterns, conflict-repair scripts, decision norms — written for the kinds of teams you actually lead.</p>
             </div>
           </div>
-          <div class="row">
+          <div class="row row-brown">
             <span class="step">03</span>
             <div>
               <h4>Adaptive case</h4>
               <p>A live problem from your work, diagnosed and led through. Documented well enough to use in a review, an interview, or a pitch.</p>
             </div>
           </div>
-          <div class="row">
+          <div class="row row-gold">
             <span class="step">04</span>
             <div>
               <h4>Capstone synthesis</h4>
@@ -1173,9 +1182,6 @@
           <span class="kicker">Voices · ITL</span>
           <h2>Faculty, <em>in their own words.</em></h2>
         </div>
-        <p class="intro">
-          From the people who designed and teach the program. Student voices will follow after the first cohort graduates.
-        </p>
       </header>
 
       <div class="head">
@@ -1194,7 +1200,7 @@
           </div>
           <div class="body">
             <blockquote>
-              <span class="mark">“</span>We built this for the leader who has the title and is still figuring it out in real time. That's the part most programs leave out.<span class="mark">”</span>
+              <span class="mark">“</span>We designed the program around competencies — what working professionals are actually measured on. Every assignment is meant to fit alongside a job, not replace one.<span class="mark">”</span>
             </blockquote>
             <cite>
               Faculty · founder
