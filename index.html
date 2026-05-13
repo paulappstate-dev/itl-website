@@ -662,18 +662,24 @@
     padding-top: clamp(48px, 6vw, 80px);
     padding-bottom: clamp(48px, 6vw, 80px);
     display: grid;
-    grid-template-columns: 320px 1fr;
+    grid-template-columns: 240px 1fr;
     gap: clamp(28px, 4vw, 56px);
     align-items: stretch;
   }
+  .quote .sec-head {
+    grid-column: 1 / -1;
+    margin-bottom: 32px;
+  }
+  .quote .sec-head .kicker { color: var(--gold); }
+  .quote .sec-head h2 { color: var(--white); }
+  .quote .sec-head .intro { color: rgba(255,255,255,0.78); }
   .quote .head {
     grid-column: 1 / -1;
-    display: flex; justify-content: space-between; align-items: baseline; gap: 16px;
+    display: flex; justify-content: flex-end; align-items: center; gap: 16px;
     padding-bottom: 18px;
     border-bottom: 1px solid rgba(255,255,255,0.25);
     margin-bottom: 8px;
   }
-  .quote .head .kicker { color: var(--gold); }
   .quote .head .controls { display: flex; align-items: center; gap: 10px; }
   .quote .head .controls button {
     background: transparent; color: var(--white);
@@ -693,7 +699,7 @@
     min-width: 40px; text-align: center;
   }
 
-  .quote .viewport { position: relative; overflow: hidden; grid-column: 1 / -1; display: grid; grid-template-columns: 320px 1fr; gap: clamp(28px, 4vw, 56px); align-items: stretch; }
+  .quote .viewport { position: relative; overflow: hidden; grid-column: 1 / -1; display: grid; grid-template-columns: 240px 1fr; gap: clamp(28px, 4vw, 56px); align-items: stretch; }
   .quote .slide { display: contents; }
   .quote .slide:not(.active) { display: none; }
 
@@ -731,10 +737,10 @@
     margin: 0;
     font-family: var(--serif);
     font-style: italic;
-    font-size: clamp(22px, 2.6vw, 36px);
-    line-height: 1.2;
+    font-size: clamp(18px, 2vw, 28px);
+    line-height: 1.25;
     letter-spacing: -0.01em;
-    max-width: 32ch;
+    max-width: 34ch;
   }
   .quote blockquote .mark { color: var(--gold); }
   .quote cite {
@@ -1005,7 +1011,7 @@
           <h2>Three questions, <em>taught like methods.</em></h2>
         </div>
         <p class="intro">
-          Three questions run through every course. They look simple. They aren't. The work here is to make them practiceable — to give you reps until they hold up under the conditions you actually lead in.
+          Three questions run through every course. They look simple. They aren't. The program is built to make them answerable on your own ground — not in a textbook, not on a slide, but in the conditions you actually live in.
         </p>
       </header>
 
@@ -1056,7 +1062,7 @@
     </div>
   </section>
 
-  <!-- signature feature -->
+  <!-- portfolio -->
   <section class="sec sec--paper2" id="portfolio">
     <div class="wrap">
       <header class="sec-head">
@@ -1065,45 +1071,45 @@
           <h2>A working portfolio. <em>And a transcript behind it.</em></h2>
         </div>
         <p class="intro">
-          Every course leaves a real artifact behind. By graduation you carry a small, defensible body of work — the kind that moves a performance review, a job interview, or a consulting pitch.
+          Each course leaves a real thing behind — written, finished, yours. By graduation, those things have stacked up into a body of work that speaks for you when you're not in the room.
         </p>
       </header>
 
       <div class="signature">
         <div class="left">
           <span class="badge">Built over 5 courses</span>
-          <h3>You don't just<br>study leadership.<br><em>You ship it.</em></h3>
+          <h3>You don't just<br>study leadership.<br><em>You prove it.</em></h3>
           <p class="body">
-            Each ITL course produces something tangible — a guide, a playbook, an assessment, a deliverable. They stack into a portfolio you can put on a desk, in a slide, or on a hiring page. The work is yours; we just scaffold the reps.
+            Each course leaves a real artifact — written, finished, yours. They stack into a body of work you can carry forward — into a conversation, an interview, the next chapter. The making is yours; we hold the frame.
           </p>
         </div>
         <div class="right">
           <div class="row">
             <span class="step">01</span>
             <div>
-              <h4>Cross-cultural communication guide</h4>
-              <p>A working manual for your own organization — high/low context, async patterns, conflict-repair scripts, decision norms you can hand a new hire on day one.</p>
+              <h4>Self-assessment + growth plan</h4>
+              <p>Where you are now, what you'll work on next, and how you'll know it's moving.</p>
             </div>
           </div>
           <div class="row">
             <span class="step">02</span>
             <div>
-              <h4>Virtual collaboration playbook</h4>
-              <p>The rituals, tools, and team contracts that make distributed work actually work — written for the teams and time zones you actually lead.</p>
+              <h4>Cross-cultural playbook</h4>
+              <p>Communication patterns, conflict-repair scripts, decision norms — written for the kinds of teams you actually lead.</p>
             </div>
           </div>
           <div class="row">
             <span class="step">03</span>
             <div>
-              <h4>CQ self-assessment &amp; growth plan</h4>
-              <p>A full Cultural Intelligence profile (Drive / Knowledge / Strategy / Action) and a year-out development plan keyed to your real context.</p>
+              <h4>Adaptive case</h4>
+              <p>A live problem from your work, diagnosed and led through. Documented well enough to use in a review, an interview, or a pitch.</p>
             </div>
           </div>
           <div class="row">
             <span class="step">04</span>
             <div>
-              <h4>Capstone joint deliverable</h4>
-              <p>The work you co-produced with peers abroad in the practicum: artifact, reflection memo, and a one-page case study you can keep using.</p>
+              <h4>Capstone synthesis</h4>
+              <p>Everything brought together — methods, artifacts, lessons. Portfolio-ready, and yours to keep using.</p>
             </div>
           </div>
         </div>
@@ -1117,42 +1123,42 @@
       <header class="sec-head">
         <div>
           <span class="kicker">Coursework</span>
-          <h2>Five courses, <em>15 credits.</em></h2>
+          <h2>Five courses. <em>Fifteen credits.</em></h2>
         </div>
         <p class="intro">
-          A focused sequence — every course earns its credit. Take one course per semester alongside your work, or accelerate. Designed for completion in 12–18 months.
+          A short, focused sequence. Take the first four in any order; the practicum comes last. One course per term keeps pace with a working career; you can accelerate if life allows. Most students finish in 12–18 months.
         </p>
       </header>
 
       <div class="courses">
         <article class="course pillar-blue">
           <div><span class="code">ITL 6100</span></div>
-          <h3>Cross-Cultural Communication</h3>
-          <p>Foundations of cultural intelligence in global leadership. Build a working CQ profile and a communication kit you can use Monday.</p>
+          <h3>Cross-Cultural Communication in Global Leadership</h3>
+          <p>Foundations of cross-cultural communication, anchored in the Cultural Intelligence framework. Map your own patterns, run a bias inventory, and leave with a development plan keyed to your work.</p>
           <div class="credits">3 cr.</div>
         </article>
         <article class="course pillar-green">
           <div><span class="code">ITL 6200</span></div>
-          <h3>Technology for International Collaboration</h3>
-          <p>Tools, rituals, and habits for leading distributed teams. Async-first patterns, modern collaboration stacks, and how to choose between them.</p>
+          <h3>Technology for International Collaborations</h3>
+          <p>How collaboration technology shapes — and distorts — cross-cultural work. Diagnose your team's setup and build a plan for the way you actually work at distance.</p>
           <div class="credits">3 cr.</div>
         </article>
         <article class="course pillar-orange">
           <div><span class="code">ITL 6300</span></div>
           <h3>Leadership for Global Challenges</h3>
-          <p>Adaptive leadership frameworks for problems that cross borders — climate, health, supply, migration, technology policy.</p>
+          <p>Adaptive leadership for problems that cross borders — climate, health, supply, migration. Pick a real one, diagnose it, propose an intervention that respects culture.</p>
           <div class="credits">3 cr.</div>
         </article>
         <article class="course pillar-roof">
           <div><span class="code">ITL 6400</span></div>
           <h3>Leadership for International Teams</h3>
-          <p>Recruit, motivate, and align teams across language and culture. Case-driven, with a heavy practice diet.</p>
+          <p>Recruit, motivate, and align teams across language and culture. Case-driven and practice-heavy: simulations, conflict work, the patterns that hold under real constraints.</p>
           <div class="credits">3 cr.</div>
         </article>
         <article class="course pillar-gold">
           <div><span class="code">ITL 6500</span></div>
           <h3>International Leadership Practicum</h3>
-          <p>Capstone — the signature virtual collaboration with peers abroad. Apply the full CQ toolkit through structured, coached work.</p>
+          <p>Capstone. Pull the work from the previous four courses into one coached, contextual project. Finish the portfolio; sign off the credential.</p>
           <div class="credits">3 cr.</div>
         </article>
       </div>
@@ -1162,8 +1168,17 @@
   <!-- pull quote / testimonial carousel -->
   <section class="quote" id="voices">
     <div class="wrap">
+      <header class="sec-head">
+        <div>
+          <span class="kicker">Voices · ITL</span>
+          <h2>Faculty, <em>in their own words.</em></h2>
+        </div>
+        <p class="intro">
+          From the people who designed and teach the program. Student voices will follow after the first cohort graduates.
+        </p>
+      </header>
+
       <div class="head">
-        <span class="kicker">Voices · ITL</span>
         <div class="controls">
           <button type="button" class="q-prev" aria-label="Previous quote">←</button>
           <span class="counter"><span class="q-idx">01</span> / <span class="q-total">03</span></span>
@@ -1174,51 +1189,51 @@
       <div class="viewport" id="q-viewport">
         <div class="slide active">
           <div class="photo">
-            <div class="placeholder">Photo — student or grad<br>portrait 4 : 5</div>
-            <span class="tag">Graduate · ’24</span>
+            <div class="placeholder">Photo — Dr. Paul Wallace<br>portrait 4 : 5</div>
+            <span class="tag">Program Coordinator</span>
           </div>
           <div class="body">
             <blockquote>
-              <span class="mark">“</span>I came in with twenty years of experience and still walked out with a new instrument in my hand.<span class="mark">”</span>
+              <span class="mark">“</span>We built this for the leader who has the title and is still figuring it out in real time. That's the part most programs leave out.<span class="mark">”</span>
             </blockquote>
             <cite>
-              Recent graduate
-              <span class="who-name">Name, Title</span>
-              <span class="who-role">Director of operations · multinational NGO</span>
+              Faculty · founder
+              <span class="who-name">Dr. Paul Wallace</span>
+              <span class="who-role">Program Coordinator · Professor of Media, Technology, and Learning Design</span>
             </cite>
           </div>
         </div>
 
         <div class="slide">
           <div class="photo">
-            <div class="placeholder">Photo — current student<br>portrait 4 : 5</div>
-            <span class="tag">Student · Cohort ’25</span>
+            <div class="placeholder">Photo — Co-founder<br>portrait 4 : 5</div>
+            <span class="tag">Faculty</span>
           </div>
           <div class="body">
             <blockquote>
-              <span class="mark">“</span>The practicum was the closest thing to actually leading abroad without leaving my desk — and harder, in the right ways.<span class="mark">”</span>
+              <span class="mark">“</span>We argued for months about how much theory belongs in a working professional's program. We kept the parts that hold up under real conditions.<span class="mark">”</span>
             </blockquote>
             <cite>
-              Current student
+              Faculty · founder
               <span class="who-name">Name, Title</span>
-              <span class="who-role">Program manager · state health agency</span>
+              <span class="who-role">Co-founder · ITL Graduate Certificate</span>
             </cite>
           </div>
         </div>
 
         <div class="slide">
           <div class="photo">
-            <div class="placeholder">Photo — adjunct or partner<br>portrait 4 : 5</div>
-            <span class="tag">Adjunct faculty</span>
+            <div class="placeholder">Photo — Co-founder<br>portrait 4 : 5</div>
+            <span class="tag">Faculty</span>
           </div>
           <div class="body">
             <blockquote>
-              <span class="mark">“</span>What I appreciate is how seriously we take async — the kind of distributed practice most programs only describe.<span class="mark">”</span>
+              <span class="mark">“</span>What we're after isn't more theory. It's a place to practice the things leaders usually have to figure out on instinct.<span class="mark">”</span>
             </blockquote>
             <cite>
-              Adjunct faculty
+              Faculty · founder
               <span class="who-name">Name, Title</span>
-              <span class="who-role">Practitioner · global education consulting</span>
+              <span class="who-role">Co-founder · ITL Graduate Certificate</span>
             </cite>
           </div>
         </div>
@@ -1238,31 +1253,28 @@
       <header class="sec-head">
         <div>
           <span class="kicker">Who it's for</span>
-          <h2>Working professionals, leading <em>across</em> something.</h2>
+          <h2>For people who've <em>outgrown one map.</em></h2>
         </div>
         <p class="intro">
-          ITL is built for mid-career leaders whose work already touches more than one context — and who want the language, frameworks, and reps to lead it well.
+          For leaders whose lives have already widened past one country, one culture, one context — and who want a place to think hard about leading from that vantage.
         </p>
       </header>
 
       <div class="who">
         <article class="card tone-blue">
-          <span class="label">Sector A</span>
-          <h3>Business &amp; tech</h3>
-          <p>Product, ops, and people leaders managing distributed teams or working across regional markets.</p>
-          <span class="corner"><span>01</span>Remote-first orgs · Global brands</span>
+          <h3>Your team isn't in one room.</h3>
+          <p>Your colleagues wake hours after you do. What you're building together has to hold across those hours — across screens, distances, the silences in between. You want to learn how to lead a team you'll never share a room with.</p>
+          <span class="corner"><span>01</span>Remote-first companies · Multi-site organizations · Distributed product teams</span>
         </article>
         <article class="card tone-orange">
-          <span class="label">Sector B</span>
-          <h3>Government &amp; nonprofit</h3>
-          <p>Foreign service, NGO program leads, international development professionals, military and civilian leaders.</p>
-          <span class="corner"><span>02</span>State Dept · USAID · NGOs · DoD</span>
+          <h3>Your team isn't from one place.</h3>
+          <p>Language, custom, and unspoken assumption sit at the same table as you do. You've already learned a great deal by getting it wrong. You'd like to learn more of it on purpose — and faster.</p>
+          <span class="corner"><span>02</span>Multinationals · NGOs · Hospitals · Educational systems</span>
         </article>
         <article class="card tone-green">
-          <span class="label">Sector C</span>
-          <h3>Education &amp; healthcare</h3>
-          <p>K-16 administrators, study-abroad directors, healthcare leaders running globally-recruited or globally-served teams.</p>
-          <span class="corner"><span>03</span>Schools · Systems · Hospitals</span>
+          <h3>Your reach isn't one country.</h3>
+          <p>Your students, patients, partners, or constituents live in places you may never visit. The decisions you make reach them anyway. You want a deeper sense of who they are — and how to lead with that responsibility.</p>
+          <span class="corner"><span>03</span>Foreign service · International development · Education abroad · Global trade</span>
         </article>
       </div>
     </div>
