@@ -267,6 +267,16 @@
     color: var(--blue);
     letter-spacing: -0.03em;
   }
+  .hero .deck {
+    margin: 30px 0 0;
+    font-size: clamp(19px, 2vw, 27px);
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    line-height: 1.25;
+    color: var(--ink);
+    max-width: 34ch;
+    text-wrap: balance;
+  }
   .hero .lede {
     margin-top: 36px;
     display: grid;
@@ -522,20 +532,30 @@
     text-align: center;
     letter-spacing: 1px;
   }
-  .signature .right .row-blue  .step { background: var(--blue);  color: var(--white); }
-  .signature .right .row-green .step { background: var(--green); color: var(--white); }
-  .signature .right .row-brown .step { background: var(--brown); color: var(--white); }
-  .signature .right .row-gold  .step { background: var(--gold);  color: var(--black); }
+  .signature .right .row-blue   .step { background: var(--blue);   color: var(--white); }
+  .signature .right .row-green  .step { background: var(--green);  color: var(--white); }
+  .signature .right .row-orange .step { background: var(--orange); color: var(--white); }
+  .signature .right .row-roof   .step { background: var(--roof);   color: var(--white); }
   .signature .right .row h4 {
     margin: 0;
     font-size: 17px;
     font-weight: 800;
     letter-spacing: -0.01em;
   }
-  .signature .right .row-blue  h4 { color: var(--blue); }
-  .signature .right .row-green h4 { color: var(--green); }
-  .signature .right .row-brown h4 { color: var(--brown); }
-  .signature .right .row-gold  h4 { color: var(--gold-dark); }
+  .signature .right .row-blue   h4 { color: var(--blue); }
+  .signature .right .row-green  h4 { color: var(--green); }
+  .signature .right .row-orange h4 { color: var(--orange); }
+  .signature .right .row-roof   h4 { color: var(--roof); }
+  .signature .right .row .from {
+    display: block;
+    font-family: var(--mono);
+    font-size: 10.5px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: var(--gray-d);
+    margin-bottom: 5px;
+  }
   .signature .right .row p {
     margin: 4px 0 0;
     font-size: 13.5px;
@@ -938,15 +958,15 @@
         </span>
       </a>
       <ul>
-        <li><a href="#program" class="active">Program</a></li>
-        <li><a href="#pillars">Foundations</a></li>
-        <li><a href="#portfolio">Portfolio</a></li>
+        <li><a href="#who" class="active">Who It's For</a></li>
         <li><a href="#courses">Coursework</a></li>
-        <li><a href="#admissions">Admissions</a></li>
+        <li><a href="#structure">Structure</a></li>
+        <li><a href="#portfolio">Portfolio</a></li>
         <li><a href="#faq">FAQ</a></li>
+        <li><a href="#admissions">Apply</a></li>
       </ul>
       <div class="actions">
-        <a href="#apply" class="cta">Apply →</a>
+        <a href="#admissions" class="cta">Apply →</a>
         <button class="nav-burger" type="button" aria-expanded="false" aria-controls="nav-drawer" aria-label="Open section menu">
           <span></span><span></span><span></span>
         </button>
@@ -954,15 +974,14 @@
     </div>
     <div class="nav-drawer" id="nav-drawer">
       <ol>
-        <li><a href="#program"><span>Program</span><span class="num">01</span></a></li>
-        <li><a href="#pillars"><span>Foundations</span><span class="num">02</span></a></li>
-        <li><a href="#portfolio"><span>Portfolio</span><span class="num">03</span></a></li>
-        <li><a href="#courses"><span>Coursework</span><span class="num">04</span></a></li>
-        <li><a href="#who"><span>Who it's for</span><span class="num">05</span></a></li>
-        <li><a href="#admissions"><span>Admissions</span><span class="num">06</span></a></li>
-        <li><a href="#faq"><span>FAQ</span><span class="num">07</span></a></li>
+        <li><a href="#who"><span>Who It's For</span><span class="num">01</span></a></li>
+        <li><a href="#courses"><span>Coursework</span><span class="num">02</span></a></li>
+        <li><a href="#structure"><span>Structure</span><span class="num">03</span></a></li>
+        <li><a href="#portfolio"><span>Portfolio</span><span class="num">04</span></a></li>
+        <li><a href="#faq"><span>FAQ</span><span class="num">05</span></a></li>
+        <li><a href="#admissions"><span>Apply</span><span class="num">06</span></a></li>
       </ol>
-      <a href="#apply" class="drawer-cta">Apply →</a>
+      <a href="#admissions" class="drawer-cta">Apply →</a>
     </div>
   </nav>
 
@@ -970,7 +989,7 @@
   <header class="hero" id="program">
     <div class="wrap">
       <div class="meta">
-        <span class="kicker">Graduate Certificate <span style="color:var(--gold);">/</span> 15 Credits <span style="color:var(--gold);">/</span> Fully Online</span>
+        <span class="kicker">Graduate Certificate in International Leadership <span style="color:var(--gold);">/</span> 12 Credits <span style="color:var(--gold);">/</span> Fully Online</span>
       </div>
 
       <h1>
@@ -979,24 +998,24 @@
         borders.
       </h1>
 
+      <p class="deck">Some borders are national. Some are down the hall.</p>
+
       <div class="lede">
         <div class="body">
-          The borders that matter most don't show up on maps. They're in the meeting where directness reads as rudeness on the other side. In the message thread that runs eight hours behind your day. In the decision someone makes alone because they don't know how to ask the team. The <strong>Graduate Certificate in International Leadership</strong> makes a discipline of it.
+          You lead a team spread across two time zones, run a school where families speak three languages at home, or otherwise lead people whose assumptions differ from your own. This certificate prepares you to lead across those borders, in four online courses that fit alongside a full-time job.
         </div>
         <aside class="meta-card">
           <dl>
-            <div><dt>Format</dt><dd>Fully online</dd></div>
-            <div><dt>Length</dt><dd>5 courses · 15 credits</dd></div>
-            <div><dt>Built on</dt><dd>Research-validated leadership frameworks</dd></div>
-            <div><dt>You leave with</dt><dd>A working portfolio, not just a transcript</dd></div>
+            <div><dt>Timeline</dt><dd>About 12 to 16 months at one course per term</dd></div>
+            <div><dt>You finish with</dt><dd>A portfolio you can show an employer</dd></div>
           </dl>
         </aside>
       </div>
 
       <div class="cta-row">
-        <a class="btn btn--primary" href="https://graduate.appstate.edu/graduate-admissions/apply-graduate-school">Apply for Fall →</a>
-        <a class="btn btn--ghost" href="https://grad.appstate.edu/register/gradinfo">Request information</a>
-        <a class="btn btn--ghost" href="#courses">Browse coursework</a>
+        <a class="btn btn--primary" href="https://graduate.appstate.edu/graduate-admissions/apply-graduate-school">Apply →</a>
+        <a class="btn btn--ghost" href="https://grad.appstate.edu/register/gradinfo">Request Information</a>
+        <a class="btn btn--ghost" href="#courses">See the Courses</a>
       </div>
     </div>
   </header>
@@ -1004,66 +1023,141 @@
   <!-- at-a-glance band -->
   <section class="glance">
     <div class="wrap">
-      <div class="stat"><div class="n">15</div><div class="l">Credit hours</div></div>
-      <div class="stat"><div class="n">5</div><div class="l">Courses</div></div>
+      <div class="stat"><div class="n">12</div><div class="l">Credit hours</div></div>
+      <div class="stat"><div class="n">4</div><div class="l">Courses</div></div>
       <div class="stat"><div class="n">100<span style="font-size:0.55em">%</span></div><div class="l">Online</div></div>
-      <div class="stat"><div class="n">3</div><div class="l">Pathways forward</div></div>
+      <div class="stat"><div class="n">No</div><div class="l">GRE required</div></div>
     </div>
   </section>
 
-  <!-- foundations -->
-  <section class="sec sec--paper" id="pillars">
+  <!-- who it's for -->
+  <section class="sec sec--paper" id="who">
     <div class="wrap">
       <header class="sec-head">
         <div>
-          <span class="kicker">Foundations</span>
-          <h2>Three questions, <em>taught like methods.</em></h2>
+          <span class="kicker">Who it's for</span>
+          <h2>Three kinds of leaders <em>take this certificate.</em></h2>
         </div>
         <p class="intro">
-          Three questions run through every course. They look simple. They aren't. The program is built to make them answerable on your own ground — not in a textbook, not on a slide, but in the conditions you actually live in.
+          The certificate draws people who lead across cultural difference, whether that difference crosses a national border or sits in the next classroom. You do not need to be in one of these roles now; some students enroll to move into this kind of work.
+        </p>
+      </header>
+
+      <div class="who">
+        <article class="card tone-blue">
+          <h3>People you serve come from different places.</h3>
+          <p>You run a school, a clinic, or a department where families and staff bring different languages and expectations into the same building. Much of what you know you learned on the job. This certificate gives you formal preparation.</p>
+          <span class="corner"><span>01</span>Public schools · Hospitals · Universities · Social services</span>
+        </article>
+        <article class="card tone-orange">
+          <h3>You lead people you rarely meet.</h3>
+          <p>Your colleagues start their day as yours ends. You work with them through screens and written messages, and you may never share a room with the people you depend on. You want to know how to maintain trust and keep decisions moving under those conditions.</p>
+          <span class="corner"><span>02</span>Remote-first companies · Multi-site organizations · Distributed teams</span>
+        </article>
+        <article class="card tone-green">
+          <h3>Your decisions affect other countries.</h3>
+          <p>Your students, patients, or partners live in places you may never visit. You decide about conditions you have not seen firsthand. You want a better understanding of the people those decisions affect.</p>
+          <span class="corner"><span>03</span>Foreign service · International development · Global trade · Education abroad</span>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- coursework -->
+  <section class="sec sec--white" id="courses">
+    <div class="wrap">
+      <header class="sec-head">
+        <div>
+          <span class="kicker">Coursework</span>
+          <h2>Four courses, <em>twelve credits.</em></h2>
+        </div>
+        <p class="intro">
+          Four courses, one per term, with most students finishing in twelve to sixteen months. All four are anchored in Cultural Intelligence (CQ), a research-based framework with four capabilities: Drive, Knowledge, Strategy, and Action. Each course develops specific capabilities and produces a document for your portfolio.
+        </p>
+      </header>
+
+      <div class="courses">
+        <article class="course pillar-blue">
+          <div><span class="code">ITL 6100</span></div>
+          <h3>Cross-Cultural Communication in Global Leadership</h3>
+          <p>Foundations of cross-cultural communication, using the GLOBE dimensions and Meyer's cultural scales. You profile your own cultural positioning, analyze a real communication case, and apply the frameworks in an intercultural encounter. Introduces CQ Drive and CQ Knowledge.</p>
+          <div class="credits">3 cr.</div>
+        </article>
+        <article class="course pillar-green">
+          <div><span class="code">ITL 6200</span></div>
+          <h3>Technology for International Collaborations</h3>
+          <p>The cultural assumptions inside collaboration platforms, and the limits of AI as a cultural translator. You audit the tools you use, test AI against a real cross-cultural message, and produce a virtual collaboration playbook. Develops CQ Strategy.</p>
+          <div class="credits">3 cr.</div>
+        </article>
+        <article class="course pillar-orange">
+          <div><span class="code">ITL 6300</span></div>
+          <h3>Leadership for Global Challenges</h3>
+          <p>Leadership on problems that cross cultural lines, from public health and migration to a school district with a growing English-learner population. You choose one, diagnose it, and propose a response that accounts for culture. Deepens CQ Knowledge.</p>
+          <div class="credits">3 cr.</div>
+        </article>
+        <article class="course pillar-roof">
+          <div><span class="code">ITL 6400</span></div>
+          <h3>Leadership for International Teams</h3>
+          <p>Recruiting, motivating, and aligning teams across language and culture, including teams whose members never meet in person. You work through cases and simulations, and take a conflict situation through to a decision. Develops CQ Action.</p>
+          <div class="credits">3 cr.</div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- how the courses are structured -->
+  <section class="sec sec--paper" id="structure">
+    <div class="wrap">
+      <header class="sec-head">
+        <div>
+          <span class="kicker">How the courses are structured</span>
+          <h2>All four courses follow <em>the same structure.</em></h2>
+        </div>
+        <p class="intro">
+          The subject matter changes from course to course. The sequence does not. Each course moves from assessment through application to a completed piece of professional work.
         </p>
       </header>
 
       <div class="pillars">
         <article class="pillar pillar--blue">
           <div class="num">01</div>
-          <div class="framework">Cultural Intelligence (CQ)</div>
+          <div class="framework">Assessment</div>
           <div>
-            <h3>How do you<br>read across cultures?</h3>
-            <p>The research-backed answer is Cultural Intelligence — CQ — a four-capability framework used in business, government, and NGOs. You don't memorize it; you run it on your own work, your own teams, your own assumptions.</p>
+            <h3>You begin by establishing where you stand.</h3>
+            <p>The opening weeks establish a baseline. ITL 6100 uses research instruments to profile your cultural positioning. The remaining courses assess the technologies, teams, and problems that define your professional context.</p>
             <ul>
-              <li><span>Drive</span><span>motivate</span></li>
-              <li><span>Knowledge</span><span>observe</span></li>
-              <li><span>Strategy</span><span>plan</span></li>
-              <li><span>Action</span><span>adapt</span></li>
+              <li><span>Cultural profile</span><span>complete</span></li>
+              <li><span>Assumptions</span><span>identify</span></li>
+              <li><span>Baseline</span><span>document</span></li>
+              <li><span>Development goals</span><span>define</span></li>
             </ul>
           </div>
         </article>
         <article class="pillar pillar--orange">
           <div class="num">02</div>
-          <div class="framework">Adaptive Leadership</div>
+          <div class="framework">Application</div>
           <div>
-            <h3>How do you<br>lead through ambiguity?</h3>
-            <p>The discipline of moving forward when the path is unclear — when the problem has no precedent and the team has no playbook. You learn to distinguish technical problems from adaptive ones, and to lead the latter without faking the former.</p>
+            <h3>You apply the frameworks to documented cases.</h3>
+            <p>The middle units apply the frameworks to real professional situations. You locate examples in current practice, publish your analysis for the group, and respond to the analyses your classmates submit.</p>
             <ul>
-              <li><span>Adaptive problems</span><span>diagnose</span></li>
-              <li><span>Root causes</span><span>name</span></li>
-              <li><span>Experiments</span><span>run</span></li>
-              <li><span>Change</span><span>move</span></li>
+              <li><span>Professional cases</span><span>analyze</span></li>
+              <li><span>Frameworks</span><span>apply</span></li>
+              <li><span>Written analysis</span><span>publish</span></li>
+              <li><span>Peer response</span><span>contribute</span></li>
             </ul>
           </div>
         </article>
         <article class="pillar pillar--green">
           <div class="num">03</div>
-          <div class="framework">Distributed Practice</div>
+          <div class="framework">Production</div>
           <div>
-            <h3>How do you<br>work across distance?</h3>
-            <p>Distance is the modern default — time zones, screens, languages, partial overlaps. Working well across it is its own practice: building trust with people you'll never share a meal with, writing instead of meeting, running decisions that hold up overnight.</p>
+            <h3>You produce a document for your portfolio.</h3>
+            <p>The final unit is devoted to the signature project. You develop it across several weeks, revise it against the project rubric, and submit it as finished professional work.</p>
             <ul>
-              <li><span>Team contracts</span><span>set</span></li>
-              <li><span>Async rhythms</span><span>run</span></li>
-              <li><span>Decision logs</span><span>keep</span></li>
-              <li><span>Trust at distance</span><span>build</span></li>
+              <li><span>Signature project</span><span>develop</span></li>
+              <li><span>Project rubric</span><span>apply</span></li>
+              <li><span>Final document</span><span>submit</span></li>
+              <li><span>Portfolio</span><span>retain</span></li>
             </ul>
           </div>
         </article>
@@ -1076,49 +1170,53 @@
     <div class="wrap">
       <header class="sec-head">
         <div>
-          <span class="kicker">Signature outcome</span>
-          <h2>A working portfolio. <em>And a transcript behind it.</em></h2>
+          <span class="kicker">What you finish with</span>
+          <h2>Four documents, <em>one from each course.</em></h2>
         </div>
         <p class="intro">
-          Each course produces an artifact — written, considered, yours. By graduation, those artifacts gather into a body of work that travels with you into the next chapter, and the one after that.
+          Every course ends with a signature project. The four documents make up your portfolio, and they are written for readers outside the program, so they are ready to share with a hiring committee or a supervisor.
         </p>
       </header>
 
       <div class="signature">
         <div class="left">
-          <span class="badge">Built over 5 courses</span>
-          <h3>You don't just<br>study leadership.<br><em>You prove it.</em></h3>
+          <span class="badge">One document per course</span>
+          <h3>Your portfolio is <em>what employers can read.</em></h3>
           <p class="body">
-            Each course leaves a real artifact — written, finished, yours. They stack into a body of work you can carry forward — into a conversation, an interview, the next chapter. The making is yours; we hold the frame.
+            Your transcript lists the courses you took. Your portfolio shows what you produced in them. You keep the documents after you graduate and revise them as your work changes.
           </p>
         </div>
         <div class="right">
           <div class="row row-blue">
             <span class="step">01</span>
             <div>
-              <h4>Self-assessment + growth plan</h4>
-              <p>Where you are now, what you'll work on next, and how you'll know it's moving.</p>
+              <span class="from">From ITL 6100</span>
+              <h4>Personal Cross-Cultural Communication Guide</h4>
+              <p>Your own cultural profile, the frameworks you use to read other people's, and the strategies you will apply in your next intercultural encounter.</p>
             </div>
           </div>
           <div class="row row-green">
             <span class="step">02</span>
             <div>
-              <h4>Cross-cultural playbook</h4>
-              <p>Communication patterns, conflict-repair scripts, decision norms — written for the kinds of teams you actually lead.</p>
+              <span class="from">From ITL 6200</span>
+              <h4>Cross-Cultural Virtual Collaboration Playbook</h4>
+              <p>Platform recommendations, a communication strategy for working across distance, and an assessment of where AI helps and where it fails.</p>
             </div>
           </div>
-          <div class="row row-brown">
+          <div class="row row-orange">
             <span class="step">03</span>
             <div>
-              <h4>Adaptive case</h4>
-              <p>A live problem from your work, diagnosed and led through. Documented well enough to use in a review, an interview, or a pitch.</p>
+              <span class="from">From ITL 6300</span>
+              <h4>Global challenge analysis</h4>
+              <p>A problem that crosses cultural lines, diagnosed with research, with a proposed response that accounts for culture.</p>
             </div>
           </div>
-          <div class="row row-gold">
+          <div class="row row-roof">
             <span class="step">04</span>
             <div>
-              <h4>Capstone synthesis</h4>
-              <p>Everything brought together — methods, artifacts, lessons. Portfolio-ready, and yours to keep using.</p>
+              <span class="from">From ITL 6400</span>
+              <h4>Team leadership case</h4>
+              <p>A team situation across language and culture, analyzed through to a decision and the reasoning behind it.</p>
             </div>
           </div>
         </div>
@@ -1126,60 +1224,12 @@
     </div>
   </section>
 
-  <!-- coursework -->
-  <section class="sec sec--white" id="courses">
+  <!-- faculty (placeholder — excluded from navigation until it has real content) -->
+  <section class="quote" id="faculty">
     <div class="wrap">
       <header class="sec-head">
         <div>
-          <span class="kicker">Coursework</span>
-          <h2>Five courses. <em>Fifteen credits.</em></h2>
-        </div>
-        <p class="intro">
-          A short, focused sequence. Take the first four in any order; the practicum comes last. One course per term keeps pace with a working career; you can accelerate if life allows. Most students finish in 12–18 months.
-        </p>
-      </header>
-
-      <div class="courses">
-        <article class="course pillar-blue">
-          <div><span class="code">ITL 6100</span></div>
-          <h3>Cross-Cultural Communication in Global Leadership</h3>
-          <p>Foundations of cross-cultural communication, anchored in the Cultural Intelligence framework. Map your own patterns, run a bias inventory, and leave with a development plan keyed to your work.</p>
-          <div class="credits">3 cr.</div>
-        </article>
-        <article class="course pillar-green">
-          <div><span class="code">ITL 6200</span></div>
-          <h3>Technology for International Collaborations</h3>
-          <p>How collaboration technology shapes — and distorts — cross-cultural work. Diagnose your team's setup and build a plan for the way you actually work at distance.</p>
-          <div class="credits">3 cr.</div>
-        </article>
-        <article class="course pillar-orange">
-          <div><span class="code">ITL 6300</span></div>
-          <h3>Leadership for Global Challenges</h3>
-          <p>Adaptive leadership for problems that cross borders — climate, health, supply, migration. Pick a real one, diagnose it, propose an intervention that respects culture.</p>
-          <div class="credits">3 cr.</div>
-        </article>
-        <article class="course pillar-roof">
-          <div><span class="code">ITL 6400</span></div>
-          <h3>Leadership for International Teams</h3>
-          <p>Recruit, motivate, and align teams across language and culture. Case-driven and practice-heavy: simulations, conflict work, the patterns that hold under real constraints.</p>
-          <div class="credits">3 cr.</div>
-        </article>
-        <article class="course pillar-gold">
-          <div><span class="code">ITL 6500</span></div>
-          <h3>International Leadership Practicum</h3>
-          <p>Capstone. Pull the work from the previous four courses into one coached, contextual project. Finish the portfolio; sign off the credential.</p>
-          <div class="credits">3 cr.</div>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <!-- pull quote / testimonial carousel -->
-  <section class="quote" id="voices">
-    <div class="wrap">
-      <header class="sec-head">
-        <div>
-          <span class="kicker">Voices · ITL</span>
+          <span class="kicker">Faculty · ITL</span>
           <h2>Faculty, <em>in their own words.</em></h2>
         </div>
       </header>
@@ -1200,7 +1250,7 @@
           </div>
           <div class="body">
             <blockquote>
-              <span class="mark">“</span>We designed the program around competencies — what working professionals are actually measured on. Every assignment is meant to fit alongside a job, not replace one.<span class="mark">”</span>
+              <span class="mark">“</span>We designed the program around competencies — what working professionals are measured on. Every assignment is meant to fit alongside a job, not replace one.<span class="mark">”</span>
             </blockquote>
             <cite>
               Faculty · founder
@@ -1234,7 +1284,7 @@
           </div>
           <div class="body">
             <blockquote>
-              <span class="mark">“</span>What we're after isn't more theory. It's a place to practice the things leaders usually have to figure out on instinct.<span class="mark">”</span>
+              <span class="mark">“</span>What we are after is not more theory. It is a place to practice the things leaders usually have to work out on instinct.<span class="mark">”</span>
             </blockquote>
             <cite>
               Faculty · founder
@@ -1253,41 +1303,62 @@
     </div>
   </section>
 
-  <!-- who it's for -->
-  <section class="sec sec--paper" id="who">
+  <!-- faq -->
+  <section class="sec sec--paper" id="faq">
     <div class="wrap">
       <header class="sec-head">
         <div>
-          <span class="kicker">Who it's for</span>
-          <h2>For people who've <em>outgrown one map.</em></h2>
+          <span class="kicker">Common questions</span>
+          <h2>Questions we are <em>asked most often.</em></h2>
         </div>
         <p class="intro">
-          For leaders whose lives have already widened past one country, one culture, one context — and who want a place to think hard about leading from that vantage.
+          If your question does not appear here, contact the program director. We will respond directly.
         </p>
       </header>
 
-      <div class="who">
-        <article class="card tone-blue">
-          <h3>Your team isn't in one room.</h3>
-          <p>Your colleagues wake hours after you do. What you're building together has to hold across those hours — across screens, distances, the silences in between. You want to learn how to lead a team you'll never share a room with.</p>
-          <span class="corner"><span>01</span>Remote-first companies · Multi-site organizations · Distributed product teams</span>
-        </article>
-        <article class="card tone-orange">
-          <h3>Your team isn't from one place.</h3>
-          <p>Language, custom, and unspoken assumption sit at the same table as you do. You've already learned a great deal by getting it wrong. You'd like to learn more of it on purpose — and faster.</p>
-          <span class="corner"><span>02</span>Multinationals · NGOs · Hospitals · Educational systems</span>
-        </article>
-        <article class="card tone-green">
-          <h3>Your reach isn't one country.</h3>
-          <p>Your students, patients, partners, or constituents live in places you may never visit. The decisions you make reach them anyway. You want a deeper sense of who they are — and how to lead with that responsibility.</p>
-          <span class="corner"><span>03</span>Foreign service · International development · Education abroad · Global trade</span>
-        </article>
+      <div class="faq">
+        <details open>
+          <summary>Do I need to work internationally to enroll?</summary>
+          <p class="a">No. The certificate is designed for anyone who leads across cultural difference, whether that difference crosses a national border or exists within a single institution. School administrators, healthcare leaders, and managers of distributed teams enroll alongside those working abroad.</p>
+        </details>
+        <details>
+          <summary>Do I need a current employer?</summary>
+          <p class="a">No. Coursework can be completed using a current organization, a former one, or a documented case. Students who enroll while changing fields complete the same assignments and produce the same portfolio.</p>
+        </details>
+        <details>
+          <summary>Are there scheduled online sessions?</summary>
+          <p class="a">Most coursework is asynchronous and can be completed on your own schedule within posted deadlines. Some courses include scheduled online sessions for collaborative work. Any required sessions are identified in the course schedule.</p>
+        </details>
+        <details>
+          <summary>Is travel required?</summary>
+          <p class="a">No. All four courses are delivered fully online.</p>
+        </details>
+        <details>
+          <summary>Is travel available?</summary>
+          <p class="a">The program has offered short international experiences in the past. None is required to earn the certificate, and none is guaranteed in a given year.</p>
+        </details>
+        <details>
+          <summary>How long does the certificate take?</summary>
+          <p class="a">Most students complete the four courses in twelve to sixteen months, taking one course per term. You may take more than one course at a time or pause between terms.</p>
+        </details>
+        <details>
+          <summary>Does the certificate apply toward a master's or doctorate?</summary>
+          <p class="a">Credits earned in the certificate can be applied toward several App State master's programs in related fields. The courses may also be taken individually within the interdisciplinary Ed.D.</p>
+        </details>
+        <details>
+          <summary>What does it cost?</summary>
+          <p class="a">App State graduate tuition rates apply, and the program is eligible for federal financial aid. If your employer requires documentation to support tuition assistance, the program director can provide it.</p>
+        </details>
+        <details>
+          <summary>What technology is required?</summary>
+          <p class="a">A reliable computer, a webcam and microphone, and broadband internet access. The university provides access to all course platforms.</p>
+        </details>
       </div>
     </div>
   </section>
 
-  <!-- admissions -->
-  <section class="sec sec--paper admit" id="admissions">
+  <!-- apply -->
+  <section class="sec sec--paper2 admit" id="admissions">
     <div class="wrap">
       <header class="sec-head">
         <div>
@@ -1295,78 +1366,36 @@
           <h2>How to <em>apply.</em></h2>
         </div>
         <p class="intro">
-          A short, friendly path. We read for substance, not credentials — tell us how you actually lead and where you want this to go.
+          The application process has four steps.
         </p>
       </header>
 
       <div class="col">
         <h3>The path</h3>
         <ol>
-          <li><div><div class="t">Get in touch</div><div class="d">Email the program director with your goals and your context. We'll write back about whether ITL is the right move right now.</div></div></li>
-          <li><div><div class="t">Submit application</div><div class="d">App State Graduate School online application: transcripts, current résumé, and a short statement of professional purpose. No GRE.</div></div></li>
-          <li><div><div class="t">Two recommendations</div><div class="d">One professional, one academic preferred — but we read for substance, not credentials. Tell us how you actually lead.</div></div></li>
-          <li><div><div class="t">Hear back</div><div class="d">Applications are reviewed as they arrive. Apply with enough lead time before your intended start; we'll respond when your file is complete.</div></div></li>
+          <li><div><div class="t">Contact the program director</div><div class="d">Email the program director with your professional goals and your current context. Questions about fit, coursework, and timing are best addressed before you begin the application.</div></div></li>
+          <li><div><div class="t">Submit the application</div><div class="d">Complete the App State Graduate School online application. It requires transcripts, a current résumé, and a short statement of professional purpose. The GRE is not required.</div></div></li>
+          <li><div><div class="t">Provide two recommendations</div><div class="d">One professional and one academic recommendation is preferred. Recommenders should address your professional work and your capacity for graduate study.</div></div></li>
+          <li><div><div class="t">Receive a decision</div><div class="d">Applications are reviewed as they are received. Submit with sufficient lead time before your intended start term.</div></div></li>
         </ol>
       </div>
     </div>
   </section>
 
-  <!-- faq -->
-  <section class="sec sec--paper2" id="faq">
-    <div class="wrap">
-      <header class="sec-head">
-        <div>
-          <span class="kicker">Common questions</span>
-          <h2>Asked &amp; <em>answered.</em></h2>
-        </div>
-        <p class="intro">
-          The questions we get most often. Don't see yours here? Reach out — we'd rather have the conversation.
-        </p>
-      </header>
-
-      <div class="faq">
-        <details open>
-          <summary>Is travel required?</summary>
-          <p class="a">No. The certificate is fully online and built to fit around the life you already have.</p>
-        </details>
-        <details>
-          <summary>Is travel available?</summary>
-          <p class="a">Yes, on occasion. The program runs short study-abroad opportunities from time to time, and capstone projects can sometimes be sited with an international partner or with your own organization abroad. None of it is required to earn the certificate.</p>
-        </details>
-        <details>
-          <summary>How long does it take?</summary>
-          <p class="a">Most students complete the certificate in 12–18 months at one course per term. You can accelerate or slow down as life requires.</p>
-        </details>
-        <details>
-          <summary>Does this stack into a master's or doctorate?</summary>
-          <p class="a">Yes. Credits earned in the certificate can be applied toward several App State master's programs in related fields, and the certificate can also be taken as a concentration within our interdisciplinary Ed.D.</p>
-        </details>
-        <details>
-          <summary>What does it cost?</summary>
-          <p class="a">App State graduate tuition rates apply; the program is eligible for federal financial aid. Many students are employer-sponsored — we'll help you build the case.</p>
-        </details>
-        <details>
-          <summary>What technology will I need?</summary>
-          <p class="a">A reliable computer, decent webcam and microphone, and broadband internet. We provide access to all coursework platforms and the collaboration stack used in the practicum.</p>
-        </details>
-      </div>
-    </div>
-  </section>
-
-  <!-- mega CTA -->
-  <section class="megacta" id="apply">
+  <!-- closing -->
+  <section class="megacta" id="closing">
     <div class="wrap">
       <h2>
-        Leadership<br>
-        <em>without</em><br>
+        Lead<br>
+        <em>across</em><br>
         borders.
       </h2>
       <div class="right">
-        <p>Applications are open year-round. Email the program director with what you're hoping to do — we'll write back with the next steps and the full program packet.</p>
+        <p>Applications are accepted year-round. Email the program director with your professional goals, and we will respond with next steps.</p>
         <div class="cta-row">
-          <a href="https://graduate.appstate.edu/graduate-admissions/apply-graduate-school" class="btn btn--dark">Apply now →</a>
-          <a href="mailto:wallacepr@appstate.edu?subject=ITL%20Program%20Inquiry" class="btn btn--ghost">Email the program director</a>
-          <a href="mailto:wallacepr@appstate.edu?subject=ITL%20Program%20Packet%20Request" class="btn btn--ghost">Request the program packet</a>
+          <a href="https://graduate.appstate.edu/graduate-admissions/apply-graduate-school" class="btn btn--dark">Apply Now →</a>
+          <a href="mailto:wallacepr@appstate.edu?subject=ITL%20Program%20Inquiry" class="btn btn--ghost">Email the Program Director</a>
+          <a href="https://grad.appstate.edu/register/gradinfo" class="btn btn--ghost">Request Information</a>
         </div>
       </div>
     </div>
@@ -1380,25 +1409,26 @@
           <img src="block-a.png" alt="App State">
           <div>
             <div class="name"><a href="https://appstate.edu">Appalachian State University</a></div>
-            <div class="sub"><a href="https://rcoe.appstate.edu">Reich College of Education</a> · Department of <a href="https://mcl.appstate.edu">Media, Career Studies and Leadership Development</a></div>
+            <div class="sub"><a href="https://rcoe.appstate.edu">Reich College of Education</a><br>Department of <a href="https://mcl.appstate.edu">Media, Career Studies and Leadership Development</a></div>
           </div>
         </div>
         <div>
           <h4>Program</h4>
           <ul>
-            <li><a href="#pillars">Foundations</a></li>
-            <li><a href="#portfolio">Portfolio</a></li>
+            <li><a href="#who">Who It's For</a></li>
             <li><a href="#courses">Coursework</a></li>
-            <li><a href="#who">Who it's for</a></li>
+            <li><a href="#structure">Course Structure</a></li>
+            <li><a href="#portfolio">Portfolio</a></li>
+            <li><a href="#faq">FAQ</a></li>
           </ul>
         </div>
         <div>
           <h4>Admissions</h4>
           <ul>
-            <li><a href="#admissions">How to apply</a></li>
-            <li><a href="https://graduate.appstate.edu/graduate-admissions/apply-graduate-school">Apply now</a></li>
-            <li><a href="https://grad.appstate.edu/register/gradinfo">Request info</a></li>
-            <li><a href="mailto:wallacepr@appstate.edu?subject=ITL%20Program%20Inquiry">Email the director</a></li>
+            <li><a href="#admissions">How to Apply</a></li>
+            <li><a href="https://graduate.appstate.edu/graduate-admissions/apply-graduate-school">Apply Now</a></li>
+            <li><a href="https://grad.appstate.edu/register/gradinfo">Request Information</a></li>
+            <li><a href="mailto:wallacepr@appstate.edu?subject=ITL%20Program%20Inquiry">Email the Director</a></li>
           </ul>
         </div>
         <div>
@@ -1407,7 +1437,7 @@
             <li><a href="https://appitl.info">appitl.info</a></li>
             <li><a href="mailto:wallacepr@appstate.edu">wallacepr@appstate.edu</a></li>
             <li>@appITL</li>
-            <li>ASU Box 32086 · Boone, NC</li>
+            <li>ASU Box 32086, Boone, NC</li>
           </ul>
         </div>
       </div>
